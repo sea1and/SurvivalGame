@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 	float camRayLength = 100f;
 
 	void Awake() {
-		floorMask = LayerMask.GetMask ("Terrain");
+		floorMask = LayerMask.GetMask ("Floor");
 		anim = GetComponent<Animator> ();
 		playerRigidbody = GetComponent<Rigidbody> ();
 	}
@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
 		if (Physics.Raycast (camRay, out floorHit, camRayLength, floorMask)) {
 			Vector3 playerToMouse = floorHit.point - transform.position;
 			playerToMouse.y = 0f;
+
 
 			//чёрная магия begin
 			Quaternion newRotation = Quaternion.LookRotation (playerToMouse);
