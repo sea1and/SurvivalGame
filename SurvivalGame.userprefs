@@ -1,12 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Misc\Quest.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Misc\ItemDatabase.cs">
     <Files>
-      <File FileName="Assets\Scripts\Misc\Quest.cs" Line="31" Column="37" />
-      <File FileName="Assets\Scripts\Misc\Objective.cs" Line="34" Column="40" />
-      <File FileName="Assets\Scripts\Enemy\EnemyAttack.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy\EnemyHealth.cs" Line="81" Column="1" />
-      <File FileName="Assets\Scripts\Enemy\EnemyMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Misc\Item.cs" Line="9" Column="25" />
+      <File FileName="Assets\Scripts\Misc\ItemDatabase.cs" Line="10" Column="91" />
+      <File FileName="Assets\Scripts\Misc\Inventory.cs" Line="39" Column="15" />
+      <File FileName="Assets\Scripts\Misc\SlotScript.cs" Line="24" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

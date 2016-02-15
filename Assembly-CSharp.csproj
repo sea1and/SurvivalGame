@@ -51,9 +51,11 @@
      <Compile Include="Assets\Scripts\Enemy\EnemyMovement.cs" />
      <Compile Include="Assets\Scripts\Managers\EnemyManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GameOverManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\ScoreManager.cs" />
-     <Compile Include="Assets\Scripts\Misc\Objective.cs" />
-     <Compile Include="Assets\Scripts\Misc\Quest.cs" />
+     <Compile Include="Assets\Scripts\Managers\GoldManager.cs" />
+     <Compile Include="Assets\Scripts\Misc\Inventory.cs" />
+     <Compile Include="Assets\Scripts\Misc\Item.cs" />
+     <Compile Include="Assets\Scripts\Misc\ItemDatabase.cs" />
+     <Compile Include="Assets\Scripts\Misc\SlotScript.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerShooting.cs" />
