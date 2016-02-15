@@ -11,10 +11,16 @@ public class PlayerMovement : MonoBehaviour
 	int floorMask;
 	float camRayLength = 100f;
 
+	public Texture2D cursorTexture;
+	public CursorMode cursorMode = CursorMode.Auto;
+	public Vector2 hotSpot = Vector2.zero;
+
 	void Awake() {
 		floorMask = LayerMask.GetMask ("Floor");
 		anim = GetComponent<Animator> ();
 		playerRigidbody = GetComponent<Rigidbody> ();
+		cursorTexture = Resources.Load<Texture2D> ("cursor_default");
+		Cursor.SetCursor (cursorTexture, hotSpot, cursorMode);
 	}
 
 	void FixedUpdate() {

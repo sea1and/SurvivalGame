@@ -9,9 +9,22 @@ public class Inventory : MonoBehaviour {
 	public List<Item> Items = new List<Item>();
 	public GameObject slots;
 	ItemDatabase database;
+
 	public GameObject tooltip;
 	int x = -90;
 	int y = 80;
+
+	public GameObject draggedItemGameObject;
+	public bool draggingItem = false;
+	public Item draggedItem;
+	public int indexOfDraggedItem;
+
+	void Update() {
+		if (draggingItem) {
+			Vector3 posi = (Input.mousePosition - GameObject.FindGameObjectWithTag ("Canvas").GetComponent<RectTransform> ().localPosition);
+			draggedItemGameObject.GetComponent<RectTransform> ().localPosition = new Vector3 (posi.x + 15, posi.y - 15, posi.z);
+		}
+	}
 
 	void Start () {
 
@@ -65,10 +78,26 @@ public class Inventory : MonoBehaviour {
 		tooltip.SetActive (true);
 
 		tooltip.transform.GetChild (0).GetComponent<Text>().text = item.itemName;
+		tooltip.transform.GetChild (1).GetComponent<Text>().text = "+" + item.itemPower + " to Power";
 		tooltip.transform.GetChild (2).GetComponent<Text>().text = item.itemDesc;
 	}
 
 	public void closeTooltip() {
 		tooltip.SetActive (false);
+	}
+
+	public void showDraggedItem(Item item, int slotNumber) {
+		indexOfDraggedItem = slotNumber;
+		closeTooltip ();
+		draggedItemGameObject.SetActive(true);
+		draggedItem = item;
+		draggingItem = true;
+		draggedItemGameObject.GetComponent<Image>().sprite = item.itemIcon;
+
+	}
+
+	public void closeDraggedItem() {
+		draggingItem = false;
+		draggedItemGameObject.SetActive(false);
 	}
 }

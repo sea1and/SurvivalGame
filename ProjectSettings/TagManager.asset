@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ItemDatabase
   - Inventory
+  - Canvas
   layers:
   - Default
   - TransparentFX
