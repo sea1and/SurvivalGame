@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class Inventory : MonoBehaviour {
 	public List<Item> Items = new List<Item>();
 	public GameObject slots;
 	ItemDatabase database;
+	public GameObject tooltip;
 	int x = -90;
 	int y = 80;
 
@@ -56,5 +58,17 @@ public class Inventory : MonoBehaviour {
 				break;
 			}
 		}
+	}
+
+	public void ShowTooltip(Vector3 toolPosition, Item item) {
+		tooltip.GetComponent<RectTransform> ().localPosition = new Vector3 (toolPosition.x + 245, toolPosition.y, toolPosition.z);
+		tooltip.SetActive (true);
+
+		tooltip.transform.GetChild (0).GetComponent<Text>().text = item.itemName;
+		tooltip.transform.GetChild (2).GetComponent<Text>().text = item.itemDesc;
+	}
+
+	public void closeTooltip() {
+		tooltip.SetActive (false);
 	}
 }

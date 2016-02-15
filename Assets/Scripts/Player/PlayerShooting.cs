@@ -37,10 +37,10 @@ public class PlayerShooting : MonoBehaviour
             Shoot ();
         }
 
-        if(timer >= timeBetweenBullets * effectsDisplayTime)
-        {
-            DisableEffects ();
-        }
+		if (timer >= timeBetweenBullets * effectsDisplayTime) {
+			DisableEffects ();
+		}
+
     }
 
 

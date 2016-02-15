@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler {
+public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler {
 
 	public Item item;
 	Image itemImage;
@@ -29,13 +29,19 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerEnterHandl
 	}
 
 	public void OnPointerDown(PointerEventData data) {
-		Debug.Log (transform.name);
+		
 	}
 
 	public void OnPointerEnter(PointerEventData data) {
-		if (inventory.Items [slotNumber].itemName != null) {
-			Debug.Log (inventory.Items [slotNumber].itemDesc);
+		if (inventory.Items[slotNumber].itemName != null) {
+			inventory.ShowTooltip (inventory.Slots[slotNumber].GetComponent<RectTransform>().localPosition, inventory.Items[slotNumber]);
 		}
+	}
+
+	public void OnPointerExit(PointerEventData data) {
+		if (inventory.Items [slotNumber].itemName != null) {
+			inventory.closeTooltip (); 
+		} 
 	}
 
 }
