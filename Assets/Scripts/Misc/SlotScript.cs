@@ -15,10 +15,11 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerEnterHandl
 		itemImage = gameObject.transform.GetChild(0).GetComponent<Image> ();
 
 	}
-	
+	 
 
 	void Update () {
 		if (inventory.Items[slotNumber].itemName != null) {
+			item = inventory.Items[slotNumber];
 			itemImage.enabled = true;
 			itemImage.sprite = inventory.Items[slotNumber].itemIcon;
 		} 
@@ -32,6 +33,9 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerEnterHandl
 	}
 
 	public void OnPointerEnter(PointerEventData data) {
-		Debug.Log ("Mouseover");
+		if (inventory.Items [slotNumber].itemName != null) {
+			Debug.Log (inventory.Items [slotNumber].itemDesc);
+		}
 	}
+
 }

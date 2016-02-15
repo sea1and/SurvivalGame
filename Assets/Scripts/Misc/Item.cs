@@ -27,10 +27,10 @@ public class Item {
 		Hands
 	}
 
-	public Item(string name, int id, string decs, int power, int speed, int value, ItemType type) {
+	public Item(string name, int id, string desc, int power, int speed, int value, ItemType type) {
 		itemName = name;
 		itemID = id;
-		itemDesc = itemDesc;
+		itemDesc = desc;
 		itemPower = power;
 		itemSpeed = speed;
 		itemValue = value;
