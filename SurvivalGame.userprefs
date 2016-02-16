@@ -2,10 +2,18 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Misc\ItemDatabase.cs">
     <Files>
+<<<<<<< HEAD
+      <File FileName="Assets\Scripts\Managers\GoldManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Misc\Inventory.cs" Line="62" Column="5" />
+      <File FileName="Assets\Scripts\Misc\Item.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Misc\ItemDatabase.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Misc\SlotScript.cs" Line="1" Column="1" />
+=======
       <File FileName="Assets\Scripts\Misc\Item.cs" Line="9" Column="25" />
       <File FileName="Assets\Scripts\Misc\ItemDatabase.cs" Line="10" Column="91" />
       <File FileName="Assets\Scripts\Misc\Inventory.cs" Line="39" Column="15" />
       <File FileName="Assets\Scripts\Misc\SlotScript.cs" Line="24" Column="5" />
+>>>>>>> 68e36190d9731fca4a50ad52c3fc3152c9beaa88
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

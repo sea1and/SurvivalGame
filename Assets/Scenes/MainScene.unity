@@ -12547,6 +12547,7 @@ Transform:
   - {fileID: 913587066}
   - {fileID: 1347060012}
   - {fileID: 295500325}
+  - {fileID: 2060827410}
   - {fileID: 279926549}
   - {fileID: 1494352378}
   - {fileID: 1657994704}
@@ -45841,7 +45842,11 @@ Transform:
   m_Children:
   - {fileID: 732666552}
   m_Father: {fileID: 636589998}
+<<<<<<< HEAD
   m_RootOrder: 189
+=======
+  m_RootOrder: 193
+>>>>>>> origin/master
 --- !u!23 &2060827411
 MeshRenderer:
   m_ObjectHideFlags: 0
