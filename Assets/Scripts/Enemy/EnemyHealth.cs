@@ -7,6 +7,7 @@ public class EnemyHealth : MonoBehaviour
     public float sinkSpeed = 2.5f;
     public int scoreValue = 10;
     public AudioClip deathClip;
+    public GameObject Loot;
 
     Animator anim;
     AudioSource enemyAudio;
@@ -35,6 +36,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+
     public void TakeDamage (int amount, Vector3 hitPoint)
     {
         if(isDead)
@@ -61,11 +63,18 @@ public class EnemyHealth : MonoBehaviour
         capsuleCollider.isTrigger = true;
 
         anim.SetTrigger ("Dead");
-
         enemyAudio.clip = deathClip;
         enemyAudio.Play ();
+        int randnum = Random.Range(0, 14);
+        if (randnum == 0) { 
+        SpawnLoot();
+        }
     }
 
+    public void SpawnLoot()
+    {
+        Instantiate(Loot, gameObject.transform.position, Quaternion.identity);
+    }
 
     public void StartSinking ()
     {
