@@ -8,7 +8,6 @@ public class EnemyHealth : MonoBehaviour
     public int scoreValue = 10;
     public AudioClip deathClip;
 
-
     Animator anim;
     AudioSource enemyAudio;
     ParticleSystem hitParticles;
@@ -35,7 +34,6 @@ public class EnemyHealth : MonoBehaviour
             transform.Translate (-Vector3.up * sinkSpeed * Time.deltaTime);
         }
     }
-
 
     public void TakeDamage (int amount, Vector3 hitPoint)
     {

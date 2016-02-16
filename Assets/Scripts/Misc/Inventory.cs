@@ -9,7 +9,6 @@ public class Inventory : MonoBehaviour {
 	public List<Item> Items = new List<Item>();
 	public GameObject slots;
 	ItemDatabase database;
-
 	public GameObject tooltip;
 	int x = -90;
 	int y = 80;

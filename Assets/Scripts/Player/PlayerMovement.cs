@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
 	public Texture2D cursorTexture;
 	public CursorMode cursorMode = CursorMode.Auto;
 	public Vector2 hotSpot = Vector2.zero;
+	public GameObject inv;
+	public bool invShown = false;
 
 	void Awake() {
 		floorMask = LayerMask.GetMask ("Floor");
@@ -30,6 +32,16 @@ public class PlayerMovement : MonoBehaviour
 		Move (h, v);
 	 	Turning ();
 		Animating (h, v);
+		
+		if(Input.GetKeyDown(KeyCode.I)) {
+			if (invShown) {
+				invShown = false;
+				inv.SetActive (false);
+			}
+			else { invShown = true;	inv.SetActive(true);}
+		}
+		
+		
 	}
 
 	void Move(float h, float v) {
