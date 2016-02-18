@@ -1,10 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\PlayerPickUpManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\PickUpManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\Misc\Inventory.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\PlayerPickUpManager.cs" Line="19" Column="5" />
-      <File FileName="Assets\Scripts\Player\PlayerMovement.cs" Line="33" Column="15" />
+      <File FileName="Assets\Scripts\Misc\LootType.cs" Line="6" Column="20" />
+      <File FileName="Assets\Scripts\Managers\PickUpManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

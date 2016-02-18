@@ -54,7 +54,7 @@ public class Inventory : MonoBehaviour {
 		addItem (1);
 	}
 
-	void addItem(int id) {
+	public void addItem(int id) {
 		for (int i = 0; i < database.items.Count; i++) {
 			if (database.items[i].itemID == id) {
 				Item item = database.items[i];
