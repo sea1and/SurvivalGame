@@ -2969,7 +2969,7 @@ GameObject:
   - 222: {fileID: 138212303}
   - 114: {fileID: 138212302}
   m_Layer: 5
-  m_Name: BackGround
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12491,6 +12491,7 @@ Transform:
   - {fileID: 2022108437}
   - {fileID: 1368959642}
   - {fileID: 551039891}
+  - {fileID: 2060827410}
   - {fileID: 1660712017}
   - {fileID: 2038825959}
   - {fileID: 83038915}
@@ -12515,7 +12516,6 @@ Transform:
   - {fileID: 180424605}
   - {fileID: 1127982074}
   - {fileID: 96936112}
-  - {fileID: 2060827410}
   - {fileID: 291041566}
   - {fileID: 2121685177}
   - {fileID: 1037632451}
@@ -46121,7 +46121,7 @@ Transform:
   m_Children:
   - {fileID: 732666552}
   m_Father: {fileID: 636589998}
-  m_RootOrder: 95
+  m_RootOrder: 71
 --- !u!23 &2060827411
 MeshRenderer:
   m_ObjectHideFlags: 0

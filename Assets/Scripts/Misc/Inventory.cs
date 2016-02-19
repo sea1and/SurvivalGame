@@ -54,12 +54,30 @@ public class Inventory : MonoBehaviour {
 		addItem (1);
 	}
 
+	public void CheckIfItemExist(int itemID, Item item) {
+		for (int i = 0; i < Items.Count; i++) {
+			if (Items [i].itemID == itemID) {
+				Items [i].itemValue++;
+				break;
+			} 
+			else if(i == Items.Count - 1) {
+				addItemAtEmptySlot (item);
+			}
+		}
+	}
+
 	public void addItem(int id) {
 		for (int i = 0; i < database.items.Count; i++) {
 			if (database.items[i].itemID == id) {
 				Item item = database.items[i];
-				addItemAtEmptySlot(item);
-				break;
+				if (database.items [i].itemType == Item.ItemType.Consumable) {
+					CheckIfItemExist (id, item);
+					break;
+				} 
+				else {
+					addItemAtEmptySlot (item);
+					break;
+				}
 			}
 		}
 	}
@@ -68,13 +86,14 @@ public class Inventory : MonoBehaviour {
 		for (int i = 0; i < Items.Count; i++) {
 			if (Items [i].itemName == null) {
 				Items [i] = item;
+				Items [i].itemValue = 1;
 				break;
 			}
 		}
 	}
 
 	public void ShowTooltip(Vector3 toolPosition, Item item) {
-		tooltip.GetComponent<RectTransform> ().localPosition = new Vector3 (toolPosition.x + 245, toolPosition.y, toolPosition.z);
+		tooltip.GetComponent<RectTransform> ().localPosition = new Vector3 (toolPosition.x + 230, toolPosition.y, toolPosition.z);
 		tooltip.SetActive (true);
 
 		tooltip.transform.GetChild (0).GetComponent<Text>().text = item.itemName;

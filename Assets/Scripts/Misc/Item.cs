@@ -9,7 +9,7 @@ public class Item {
 	public Sprite itemIcon;
 	public GameObject itemModel;
 	public int itemPower;
-	public int itemSpeed;
+	public int itemDefense;
 	public int itemValue;
 	public ItemType itemType;
 
@@ -27,12 +27,12 @@ public class Item {
 		Hands
 	}
 
-	public Item(string name, int id, string desc, int power, int speed, int value, ItemType type) {
+	public Item(string name, int id, string desc, int power, int defense, int value, ItemType type) {
 		itemName = name;
 		itemID = id;
 		itemDesc = desc;
 		itemPower = power;
-		itemSpeed = speed;
+		itemDefense = defense;
 		itemValue = value;
 		itemType = type;
 		itemIcon = Resources.Load<Sprite> ("" + name);

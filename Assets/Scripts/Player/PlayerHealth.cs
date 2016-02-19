@@ -63,6 +63,17 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+	public void RestoreHP (int amount) {
+		if (currentHealth + amount <= 100) {
+			currentHealth += amount;
+		} 
+		else {
+			currentHealth = 100;
+		}
+		healthSlider.value = currentHealth;
+		playerAudio.Play ();
+	}
+
 
     void Death ()
     {

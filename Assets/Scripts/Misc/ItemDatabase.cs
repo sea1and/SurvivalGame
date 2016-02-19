@@ -8,7 +8,7 @@ public class ItemDatabase : MonoBehaviour {
 
 	void Start () {
 		items.Add (new Item ("crimson_guard", 0, "The best armor", 10, 10, 1, Item.ItemType.Chest));
-		items.Add (new Item ("energy_booster", 1, "Amazing stone", 10, 10, 1, Item.ItemType.Consumable));
+		items.Add (new Item ("bottle", 1, "HP Potion", 10, 10, 1, Item.ItemType.Consumable));
 	}
 	
 	// Update is called once per frame
