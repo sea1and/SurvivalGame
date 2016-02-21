@@ -43,14 +43,20 @@ public class SlotScript : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPo
 	public void OnDrop (PointerEventData data) {
 		if (inventory.Items [slotNumber].itemName == null && inventory.draggingItem) {
 			inventory.Items [slotNumber] = inventory.draggedItem;
-			inventory.closeDraggedItem();
-		}
-		else if(inventory.draggingItem && inventory.Items[slotNumber].itemName != null) {
-			inventory.Items[inventory.indexOfDraggedItem] = inventory.Items[slotNumber];
-			inventory.Items [slotNumber] = inventory.draggedItem;
-			inventory.closeDraggedItem();
+			inventory.closeDraggedItem ();
+		} 
+		else {
+			try {
+				if (inventory.draggingItem && inventory.Items [slotNumber].itemName != null) {
+					inventory.Items [inventory.indexOfDraggedItem] = inventory.Items [slotNumber];
+					inventory.Items [slotNumber] = inventory.draggedItem;
+					inventory.closeDraggedItem ();
+				}
+			}
+			catch {}
 		}
 	}
+		
 
 	public void OnPointerEnter(PointerEventData data) {
 		if (inventory.Items[slotNumber].itemName != null && !inventory.draggingItem) {
@@ -65,14 +71,32 @@ public class SlotScript : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPo
 	}
 
 	public void OnDrag(PointerEventData data) {
-		if (inventory.Items [slotNumber].itemName != null) {
-			inventory.showDraggedItem (inventory.Items [slotNumber], slotNumber);
-			inventory.Items [slotNumber] = new Item ();
-			itemAmount.enabled = false;
+		if (!inventory.draggingItem) {
+			if (inventory.Items [slotNumber].itemName != null) {
+				inventory.showDraggedItem (inventory.Items [slotNumber], slotNumber);
+				inventory.Items [slotNumber] = new Item ();
+				itemAmount.enabled = false;
+			}
 		}
 	}
 
 	public void OnPointerClick(PointerEventData data) {
+			
+			if (inventory.Items [slotNumber].itemName == null && inventory.draggingItem) {
+				inventory.Items [slotNumber] = inventory.draggedItem;
+				inventory.closeDraggedItem ();
+			} 
+			else {
+				try {
+					if (inventory.draggingItem && inventory.Items [slotNumber].itemName != null) {
+						inventory.Items [inventory.indexOfDraggedItem] = inventory.Items [slotNumber];
+						inventory.Items [slotNumber] = inventory.draggedItem;
+						inventory.closeDraggedItem ();
+					}
+				}
+				catch {}
+			}
+			
 			if (inventory.Items [slotNumber].itemType == Item.ItemType.Consumable) {
 				inventory.Items [slotNumber].itemValue--;
 				playerHealth.RestoreHP (inventory.Items [slotNumber].itemDefense);
@@ -83,5 +107,12 @@ public class SlotScript : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPo
 				}
 			}
 	}
+
+
+
+
+
+
+
 
 }

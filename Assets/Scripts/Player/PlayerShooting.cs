@@ -3,6 +3,7 @@
 public class PlayerShooting : MonoBehaviour
 {
     public int damagePerShot = 20;
+	public int damageBonus;
     public float timeBetweenBullets = 0.15f;
     public float range = 100f;
 
@@ -25,6 +26,7 @@ public class PlayerShooting : MonoBehaviour
         gunLine = GetComponent <LineRenderer> ();
         gunAudio = GetComponent<AudioSource> ();
         gunLight = GetComponent<Light> ();
+		damageBonus = 0;
     }
 
 
@@ -73,7 +75,7 @@ public class PlayerShooting : MonoBehaviour
             EnemyHealth enemyHealth = shootHit.collider.GetComponent <EnemyHealth> ();
             if(enemyHealth != null)
             {
-                enemyHealth.TakeDamage (damagePerShot, shootHit.point);
+                enemyHealth.TakeDamage (damagePerShot + damageBonus, shootHit.point);
             }
             gunLine.SetPosition (1, shootHit.point);
         }

@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public int startingHealth = 100;
     public int currentHealth;
+	public int defense;
     public Slider healthSlider;
     public Image damageImage;
     public AudioClip deathClip;
@@ -30,6 +31,7 @@ public class PlayerHealth : MonoBehaviour
         playerMovement = GetComponent <PlayerMovement> ();
         playerShooting = GetComponentInChildren <PlayerShooting> ();
         currentHealth = startingHealth;
+		defense = 0;
     }
 
 
@@ -51,7 +53,7 @@ public class PlayerHealth : MonoBehaviour
     {
         damaged = true;
 
-        currentHealth -= amount;
+		currentHealth -= (int)((1 - 0.01*defense)*amount);
 
         healthSlider.value = currentHealth;
 

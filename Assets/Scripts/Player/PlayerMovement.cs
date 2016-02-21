@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
 	public CursorMode cursorMode = CursorMode.Auto;
 	public Vector2 hotSpot = Vector2.zero;
 	public GameObject inv;
+	public GameObject chMenu;
 	public bool invShown = false;
 
 	void Awake() {
@@ -37,8 +38,9 @@ public class PlayerMovement : MonoBehaviour
 			if (invShown) {
 				invShown = false;
 				inv.SetActive (false);
+				chMenu.SetActive (false);
 			}
-			else { invShown = true;	inv.SetActive(true);}
+			else { invShown = true;	inv.SetActive(true); chMenu.SetActive (true);}
 		}
 		
 		

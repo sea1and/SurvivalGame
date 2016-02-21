@@ -54,6 +54,8 @@
      <Compile Include="Assets\Scripts\Managers\GoldManager.cs" />
      <Compile Include="Assets\Scripts\Managers\Pause.cs" />
      <Compile Include="Assets\Scripts\Managers\PickUpManager.cs" />
+     <Compile Include="Assets\Scripts\Misc\CharacterScript.cs" />
+     <Compile Include="Assets\Scripts\Misc\CharacterSlot.cs" />
      <Compile Include="Assets\Scripts\Misc\Inventory.cs" />
      <Compile Include="Assets\Scripts\Misc\Item.cs" />
      <Compile Include="Assets\Scripts\Misc\ItemDatabase.cs" />

@@ -14,6 +14,7 @@ public class Item {
 	public ItemType itemType;
 
 	public enum ItemType {
+		None,
 		Weapon,
 		Consumable,
 		Quest,
