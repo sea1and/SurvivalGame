@@ -82,6 +82,7 @@ public class EnemyHealth : MonoBehaviour
         GetComponent <Rigidbody> ().isKinematic = true;
         isSinking = true;
         GoldManager.gold += scoreValue;
+        LevelManager.TakeExp(scoreValue);
         Destroy (gameObject, 2f);
     }
 }
