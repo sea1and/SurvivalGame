@@ -25,8 +25,8 @@ public class LevelManager : MonoBehaviour {
     void Start ()
 	{
 		lvlupAudio = gameObject.GetComponent<AudioSource> ();
-		expSlider = gameObject.GetComponent<Slider>();
-        levelText = GetComponent<Text>();
+		expSlider = transform.GetChild(0).GetComponent<Slider>();
+		levelText = transform.GetChild(1).GetComponent<Text>();
 	    expSlider.value = 0;
 
 	}

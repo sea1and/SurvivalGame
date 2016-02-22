@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\Managers\EnemyManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GameOverManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GoldManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Managers\Pause.cs" />
      <Compile Include="Assets\Scripts\Managers\PickUpManager.cs" />
      <Compile Include="Assets\Scripts\Misc\CharacterScript.cs" />

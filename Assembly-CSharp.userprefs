@@ -1,10 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Misc\CharacterScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\LevelManager.cs">
     <Files>
       <File FileName="Assets\Scripts\Misc\CharacterSlot.cs" Line="15" Column="38" />
       <File FileName="Assets\Scripts\Misc\CharacterScript.cs" Line="6" Column="2" />
-      <File FileName="Assets\Scripts\Misc\SlotScript.cs" Line="27" Column="19" />
+      <File FileName="Assets\Scripts\Misc\SlotScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\LevelManager.cs" Line="24" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
