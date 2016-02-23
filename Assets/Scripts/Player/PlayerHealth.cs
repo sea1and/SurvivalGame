@@ -59,10 +59,6 @@ public class PlayerHealth : MonoBehaviour
 
         healthSlider.value = currentHealth;
 
-        if (currentHealth > 66)
-        {
-            sliderColor = new Color(51D93FFF);
-        }
 
         playerAudio.Play ();
 
