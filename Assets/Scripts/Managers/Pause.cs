@@ -40,6 +40,10 @@ public class Pause : MonoBehaviour
         isPaused = state;
     }
 
+    public void MenuButton()
+    {
+        Application.LoadLevel(0);
+    }
     public void QuitButton()
     {
         Application.Quit();

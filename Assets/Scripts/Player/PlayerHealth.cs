@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 
@@ -14,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     public AudioClip deathClip;
     public float flashSpeed = 5f;
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
+    public Color sliderColor;
 
 
     Animator anim;
@@ -56,6 +58,11 @@ public class PlayerHealth : MonoBehaviour
 		currentHealth -= (int)((1 - 0.01*defense)*amount);
 
         healthSlider.value = currentHealth;
+
+        if (currentHealth > 66)
+        {
+            sliderColor = new Color(51D93FFF);
+        }
 
         playerAudio.Play ();
 
