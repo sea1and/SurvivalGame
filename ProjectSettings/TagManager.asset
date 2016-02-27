@@ -8,6 +8,7 @@ TagManager:
   - Inventory
   - Canvas
   - Loot
+  - ShopMenu
   layers:
   - Default
   - TransparentFX

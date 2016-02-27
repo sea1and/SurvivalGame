@@ -59,6 +59,13 @@ public class PlayerHealth : MonoBehaviour
 
         healthSlider.value = currentHealth;
 
+<<<<<<< Updated upstream
+=======
+        if (currentHealth > 66)
+        {
+            //sliderColor = new Color(51D93FFF);
+        }
+>>>>>>> Stashed changes
 
         playerAudio.Play ();
 

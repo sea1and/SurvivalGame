@@ -55,6 +55,8 @@
      <Compile Include="Assets\Scripts\Managers\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Managers\Pause.cs" />
      <Compile Include="Assets\Scripts\Managers\PickUpManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\ShopManager.cs" />
+     <Compile Include="Assets\Scripts\Menu\Menu.cs" />
      <Compile Include="Assets\Scripts\Misc\CharacterScript.cs" />
      <Compile Include="Assets\Scripts\Misc\CharacterSlot.cs" />
      <Compile Include="Assets\Scripts\Misc\Inventory.cs" />
