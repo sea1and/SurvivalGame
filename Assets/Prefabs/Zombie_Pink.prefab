@@ -322,6 +322,7 @@ MonoBehaviour:
   scoreValue: 10
   deathClip: {fileID: 8300000, guid: 62366b8d2c37a49dca550841c741317f, type: 3}
   Loot: {fileID: 199042, guid: 95e73b4a8a0bdc649967e9aeb6ea74b9, type: 2}
+  enemyType: 1
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3534,6 +3535,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: moveWithTransform
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: enemyType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

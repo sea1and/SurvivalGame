@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     public int scoreValue = 10;
     public AudioClip deathClip;
     public GameObject Loot;
+    public int enemyType; // 0-slon, 1-pink, 2-green
 
     Animator anim;
     AudioSource enemyAudio;
@@ -65,6 +66,7 @@ public class EnemyHealth : MonoBehaviour
         anim.SetTrigger ("Dead");
         enemyAudio.clip = deathClip;
         enemyAudio.Play ();
+        QuestManager.EnemyKilled(enemyType);
         int randnum = Random.Range(0, 14);
         if (randnum == 0) { 
         SpawnLoot();
