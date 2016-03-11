@@ -7,10 +7,12 @@ public class LevelManager : MonoBehaviour
 
     public static int currentExp = 0;
     public static int level = 1;
+    public static int currentHealth;
     static GameObject player;
     static PlayerHealth playerHealth;
 
     static Slider expSlider;
+    static Slider healthSlider;
     static Text levelText;
     static AudioSource lvlupAudio;
 
@@ -21,7 +23,9 @@ public class LevelManager : MonoBehaviour
         {
             currentExp = currentExp - level * 100;
             level += 1;
-            playerHealth.currentHealth = playerHealth.startingHealth;
+            // playerHealth.currentHealth = playerHealth.startingHealth;
+            //healthSlider.value = currentHealth;
+            playerHealth.RestoreHP(100);
             lvlupAudio.Play();
         }
     }
