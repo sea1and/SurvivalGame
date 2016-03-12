@@ -100,6 +100,9 @@ public class PlayerHealth : MonoBehaviour
 
         playerMovement.enabled = false;
         playerShooting.enabled = false;
+        GoldManager.gold = 0;
+        LevelManager.level = 1;
+        LevelManager.currentExp = 0;
     }
 
 

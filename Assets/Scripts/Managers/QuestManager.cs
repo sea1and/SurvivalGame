@@ -23,13 +23,13 @@ public struct quest
 
 public class QuestManager : MonoBehaviour
 {
-    private static int SlonCounter = 0;
-    private static int PinkCounter = 0;
-    private static int GreenCounter = 0;
-    private Text outText;
-    private static int currentCounter = 0;
-    private static quest currentQuest;
-    private static string fulltext = "no";
+    public static int SlonCounter = 0;
+    public static int PinkCounter = 0;
+    public static int GreenCounter = 0;
+    public Text outText;
+    public static int currentCounter = 0;
+    public static quest currentQuest;
+    public static string fulltext = "no";
     static AudioSource questCompleteAudio;
     quest elephants = new quest(0, 1, 1, "Monsters to be killed: elephants");
     quest pink = new quest(1, 3, 1, "Monsters to be killed: pink zombie");                //вторая цифра - множитель

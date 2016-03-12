@@ -107,12 +107,4 @@ public class SlotScript : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPo
 				}
 			}
 	}
-
-
-
-
-
-
-
-
 }

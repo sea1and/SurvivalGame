@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\Managers\Pause.cs" />
     <Compile Include="Assets\Scripts\Managers\PickUpManager.cs" />
     <Compile Include="Assets\Scripts\Managers\QuestManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\SaveManager.cs" />
     <Compile Include="Assets\Scripts\Managers\ShopManager.cs" />
     <Compile Include="Assets\Scripts\Menu\Menu.cs" />
     <Compile Include="Assets\Scripts\Misc\CharacterScript.cs" />
