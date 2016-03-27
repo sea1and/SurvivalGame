@@ -9,6 +9,7 @@ TagManager:
   - Canvas
   - Loot
   - ShopMenu
+  - QuestText
   layers:
   - Default
   - TransparentFX
