@@ -20243,11 +20243,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22417200, guid: e57e20da1e3339049acf462b89ec5494, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22417200, guid: e57e20da1e3339049acf462b89ec5494, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22322488, guid: e57e20da1e3339049acf462b89ec5494, type: 2}
       propertyPath: m_RenderMode
