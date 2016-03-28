@@ -590,6 +590,7 @@ MonoBehaviour:
   GreenCounter: 0
   outText: {fileID: 0}
   currentCounter: 0
+  notificationManager: {fileID: 0}
 --- !u!114 &16552473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6812,6 +6813,7 @@ MonoBehaviour:
   GreenCounter: 0
   outText: {fileID: 0}
   currentCounter: 0
+  notificationManager: {fileID: 1366681725}
 --- !u!4 &329285344 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: e80a90665c8b01142a7527f62c403773, type: 2}
@@ -20342,11 +20344,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22417200, guid: e57e20da1e3339049acf462b89ec5494, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22417200, guid: e57e20da1e3339049acf462b89ec5494, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22322488, guid: e57e20da1e3339049acf462b89ec5494, type: 2}
       propertyPath: m_RenderMode
@@ -22415,6 +22417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 883697b92e40978479ffa86e59390e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notificationManager: {fileID: 0}
 --- !u!114 &937537508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23443,7 +23446,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Notification1
+  m_Text: 
 --- !u!222 &980257403
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24014,6 +24017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 883697b92e40978479ffa86e59390e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notificationManager: {fileID: 1366681725}
 --- !u!4 &1008274182
 Transform:
   m_ObjectHideFlags: 0
@@ -32217,6 +32221,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 1366681724}
+  - 114: {fileID: 1366681725}
   m_Layer: 5
   m_Name: NotificationUI
   m_TagString: Untagged
@@ -32239,11 +32244,25 @@ RectTransform:
   - {fileID: 1912100208}
   m_Father: {fileID: 1708340904}
   m_RootOrder: 2
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 366, y: 240}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1366681725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1366681723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3b02ca1294a49349a37ce2f8ae3cfbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Notify1: {fileID: 980257402}
+  Notify2: {fileID: 2131471627}
+  Notify3: {fileID: 1912100209}
 --- !u!1 &1368464939
 GameObject:
   m_ObjectHideFlags: 0
@@ -44932,7 +44951,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -210, y: -100}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 160, y: 17.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1912100209
 MonoBehaviour:
@@ -44966,7 +44985,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Notification3
+  m_Text: 
 --- !u!222 &1912100210
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -51468,7 +51487,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Notification2
+  m_Text: 
 --- !u!222 &2131471628
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -8,11 +8,10 @@ using UnityEngine.UI;
 
 public class SaveManager : MonoBehaviour
 {
-    Text text;
-    
+    public NotificationManager notificationManager;
+
     private void Start()
     {
-        text = GetComponent<Text>();
     }
     
     private void Update()
@@ -33,7 +32,7 @@ public class SaveManager : MonoBehaviour
         int level = LevelManager.level;
         int currentexp = LevelManager.currentExp;
         File.WriteAllText("Save.txt", gold + Environment.NewLine + level + Environment.NewLine +  currentexp);
-        text.text = "Game saved!(maybe)";
+        notificationManager.Notify("Game Saved!");
     }
 
     public void LoadGame()
