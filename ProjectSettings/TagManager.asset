@@ -9,6 +9,8 @@ TagManager:
   - Canvas
   - Loot
   - ShopMenu
+  - QuestText
+  - Notification
   layers:
   - Default
   - TransparentFX

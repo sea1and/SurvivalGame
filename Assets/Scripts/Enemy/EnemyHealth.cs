@@ -16,7 +16,8 @@ public class EnemyHealth : MonoBehaviour
     CapsuleCollider capsuleCollider;
     bool isDead;
     bool isSinking;
-
+    GameObject player;
+    public QuestManager questManager ;
 
     void Awake ()
     {
@@ -24,7 +25,8 @@ public class EnemyHealth : MonoBehaviour
         enemyAudio = GetComponent <AudioSource> ();
         hitParticles = GetComponentInChildren <ParticleSystem> ();
         capsuleCollider = GetComponent <CapsuleCollider> ();
-
+        player = GameObject.FindGameObjectWithTag("Player");
+        questManager = player.GetComponent<QuestManager>();
         currentHealth = startingHealth;
     }
 
@@ -56,7 +58,6 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-
     void Death ()
     {
         isDead = true;
@@ -66,7 +67,7 @@ public class EnemyHealth : MonoBehaviour
         anim.SetTrigger ("Dead");
         enemyAudio.clip = deathClip;
         enemyAudio.Play ();
-        QuestManager.EnemyKilled(enemyType);
+        questManager.EnemyKilled(enemyType);
         int randnum = Random.Range(0, 14);
         if (randnum == 0) { 
         SpawnLoot();
