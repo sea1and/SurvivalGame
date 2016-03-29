@@ -11,6 +11,9 @@ TagManager:
   - ShopMenu
   - QuestText
   - Notification
+  - Level
+  - Gold
+  - Gun
   layers:
   - Default
   - TransparentFX

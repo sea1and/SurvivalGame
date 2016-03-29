@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
 	 	Turning ();
 		Animating (h, v);
 		
-		if(Input.GetKeyDown(KeyCode.I)) {
+		if(Input.GetKeyDown(KeyCode.E)) {
 			if (invShown) {
 				invShown = false;
 				inv.SetActive (false);

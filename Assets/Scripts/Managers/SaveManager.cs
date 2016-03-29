@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class SaveManager : MonoBehaviour
 {
+    public LevelManager levelManager;
+    public GoldManager goldManager;
     public NotificationManager notificationManager;
 
     private void Start()
@@ -28,9 +30,9 @@ public class SaveManager : MonoBehaviour
 
     public void SaveGame()
     {
-        int gold = GoldManager.gold;
-        int level = LevelManager.level;
-        int currentexp = LevelManager.currentExp;
+        int gold = goldManager.gold;
+        int level = levelManager.level;
+        int currentexp = levelManager.currentExp;
         File.WriteAllText("Save.txt", gold + Environment.NewLine + level + Environment.NewLine +  currentexp);
         notificationManager.Notify("Game Saved!");
     }
@@ -40,8 +42,8 @@ public class SaveManager : MonoBehaviour
         SceneManager.LoadScene(1);
         FileStream file1 = new FileStream("Save.txt", FileMode.Open); //создаем файловый поток
         StreamReader reader = new StreamReader(file1); // создаем «потоковый читатель» и связываем его с файловым потоком 
-        GoldManager.gold = int.Parse(reader.ReadLine());
-        LevelManager.level = int.Parse(reader.ReadLine());
-        LevelManager.currentExp = int.Parse(reader.ReadLine());
+        goldManager.gold = int.Parse(reader.ReadLine());
+        levelManager.level = int.Parse(reader.ReadLine());
+        levelManager.currentExp = int.Parse(reader.ReadLine());
     }
 }

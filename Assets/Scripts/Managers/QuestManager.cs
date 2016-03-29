@@ -29,6 +29,7 @@ public class QuestManager : MonoBehaviour
     quest pink = new quest(1, 3, 1, "Monsters to be killed: pink zombie");                //вторая цифра - множитель
     quest green = new quest(2, 3, 1, "Monsters to be killed: green zombie");
     public NotificationManager notificationManager;
+    public LevelManager levelManager;
 
     public void EnemyKilled(int type) // 0-slon, 1-pink, 2-green
     {
@@ -63,7 +64,7 @@ public class QuestManager : MonoBehaviour
         else
         if (currentQuest.id == 2) green.difficulty++;
         questCompleteAudio.Play();
-        LevelManager.TakeExp(currentQuest.difficulty*50);
+        levelManager.TakeExp(currentQuest.difficulty*50);
         nextQuest();
         notificationManager.Notify("Quest complete +"+ currentQuest.difficulty * 50 + "xp");
     }

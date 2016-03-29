@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Timers;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -10,21 +11,26 @@ public class SlotScript : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPo
 	public int slotNumber;
 	Inventory inventory;
 	Text itemAmount;
-	GameObject player;
-	PlayerHealth playerHealth;
+    GameObject player;
+    GameObject gun;
+    PlayerHealth playerHealth;
+    public PlayerMovement playerMovement;
+    public PlayerShooting playerShooting;
 
-	void Start () {
-		player = GameObject.FindGameObjectWithTag ("Player");
-		playerHealth = player.GetComponent<PlayerHealth> ();
-		inventory = GameObject.FindGameObjectWithTag ("Inventory").GetComponent<Inventory> ();
+    void Start () {
+        player = GameObject.FindGameObjectWithTag("Player");
+        gun = GameObject.FindGameObjectWithTag("Gun");
+        playerHealth = player.GetComponent<PlayerHealth>();
+        playerMovement = player.GetComponent<PlayerMovement>();
+        playerShooting = gun.GetComponent<PlayerShooting>();
+        inventory = GameObject.FindGameObjectWithTag ("Inventory").GetComponent<Inventory> ();
 		itemImage = gameObject.transform.GetChild(0).GetComponent<Image> ();
 		itemAmount = gameObject.transform.GetChild (1).GetComponent<Text> ();
 	}
 	 
 
 	void Update () {
-
-		if (inventory.Items[slotNumber].itemName != null) {
+        if (inventory.Items[slotNumber].itemName != null) {
 			item = inventory.Items[slotNumber];
 			itemAmount.enabled = false;
 			itemImage.enabled = true;
@@ -99,12 +105,36 @@ public class SlotScript : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPo
 			
 			if (inventory.Items [slotNumber].itemType == Item.ItemType.Consumable) {
 				inventory.Items [slotNumber].itemValue--;
-				playerHealth.RestoreHP (inventory.Items [slotNumber].itemDefense);
-				if (inventory.Items [slotNumber].itemValue <= 0) {
+			    if (inventory.Items[slotNumber].itemID == 1)
+			    {
+			        HPPotion();
+			    }
+            if (inventory.Items[slotNumber].itemID == 8)
+            {
+                SpeedPotion();
+            }
+            if (inventory.Items[slotNumber].itemID == 9)
+            {
+                PowerPotion();
+            }
+            if (inventory.Items [slotNumber].itemValue <= 0) {
 					inventory.Items [slotNumber] = new Item ();
 					itemAmount.enabled = false;
 					inventory.closeTooltip ();
 				}
 			}
 	}
+
+    public void HPPotion()
+    {
+        playerHealth.RestoreHP(inventory.Items[slotNumber].itemDefense);
+    }
+    public void SpeedPotion()
+    {
+        playerMovement.speed = 10;
+    }
+    public void PowerPotion()
+    {
+        playerShooting.timeBetweenBullets = 0.1f;
+    }
 }

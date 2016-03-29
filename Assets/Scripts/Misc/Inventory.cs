@@ -51,14 +51,18 @@ public class Inventory : MonoBehaviour {
 		}
 
 		addItem (0);
+        addItem (1);
 		addItem (2);
 		addItem (3);
 		addItem (4);
 		addItem (5);
 		addItem (6);
-		addItem (7);
-		addItem (1);
-	}
+        addItem(7);
+        addItem(8);
+        addItem(9);
+
+
+    }
 
 	public void CheckIfItemExist(int itemID, Item item) {
 		for (int i = 0; i < Items.Count; i++) {

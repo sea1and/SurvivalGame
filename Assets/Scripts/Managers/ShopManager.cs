@@ -7,8 +7,9 @@ public class ShopManager : MonoBehaviour {
 	public Inventory inv;
 	RaycastHit hit;
 	public bool shopOpen;
+    public GoldManager goldManager;
 
-	void Start () {
+    void Start () {
 			shopOpen = false;
 	}
 
@@ -32,22 +33,22 @@ public class ShopManager : MonoBehaviour {
 	//долбаный костыль, но по другому не работает, Юнити не видит публичные функции
 	//от двух переменных в граф. редакторе
 	public void buyRapier() {
-		if (GoldManager.gold >= 1000) {
-			GoldManager.gold -= 1000;
+		if (goldManager.gold >= 1000) {
+            goldManager.gold -= 1000;
 			inv.addItem (2);
 		}
 	}
 
 	public void buyHP() {
-		if (GoldManager.gold >= 300) {
-			GoldManager.gold -= 300;
+		if (goldManager.gold >= 300) {
+            goldManager.gold -= 300;
 			inv.addItem (1);
 		}
 	}
 
 	public void buyArmor() {
-		if (GoldManager.gold >= 1000) {
-			GoldManager.gold -= 1000;
+		if (goldManager.gold >= 1000) {
+            goldManager.gold -= 1000;
 			inv.addItem (0);
 		}
 	}

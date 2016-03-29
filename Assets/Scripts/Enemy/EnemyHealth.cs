@@ -17,7 +17,11 @@ public class EnemyHealth : MonoBehaviour
     bool isDead;
     bool isSinking;
     GameObject player;
+    GameObject levelUI;
+    GameObject gold;
     public QuestManager questManager ;
+    public LevelManager levelManager;
+    public GoldManager goldManager;
 
     void Awake ()
     {
@@ -27,6 +31,10 @@ public class EnemyHealth : MonoBehaviour
         capsuleCollider = GetComponent <CapsuleCollider> ();
         player = GameObject.FindGameObjectWithTag("Player");
         questManager = player.GetComponent<QuestManager>();
+        levelUI = GameObject.FindGameObjectWithTag("Level");
+        levelManager = levelUI.GetComponent<LevelManager>();
+        gold = GameObject.FindGameObjectWithTag("Gold");
+        goldManager = gold.GetComponent<GoldManager>();
         currentHealth = startingHealth;
     }
 
@@ -84,8 +92,8 @@ public class EnemyHealth : MonoBehaviour
         GetComponent <NavMeshAgent> ().enabled = false;
         GetComponent <Rigidbody> ().isKinematic = true;
         isSinking = true;
-        GoldManager.gold += scoreValue;
-        LevelManager.TakeExp(scoreValue);
+        goldManager.gold += scoreValue;
+        levelManager.TakeExp(scoreValue);
         Destroy (gameObject, 2f);
     }
 }

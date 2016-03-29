@@ -24,7 +24,8 @@ public class PlayerHealth : MonoBehaviour
     PlayerShooting playerShooting;
     bool isDead;
     bool damaged;
-
+    public LevelManager levelManager;
+    public GoldManager goldManager;
 
     void Awake ()
     {
@@ -59,14 +60,6 @@ public class PlayerHealth : MonoBehaviour
 
         healthSlider.value = currentHealth;
 
-//<<<<<<< Updated upstream
-//=======
-        if (currentHealth > 66)
-        {
-            //sliderColor = new Color(51D93FFF);
-        }
-//>>>>>>> Stashed changes
-
         playerAudio.Play ();
 
         if(currentHealth <= 0 && !isDead)
@@ -100,9 +93,9 @@ public class PlayerHealth : MonoBehaviour
 
         playerMovement.enabled = false;
         playerShooting.enabled = false;
-        GoldManager.gold = 0;
-        LevelManager.level = 1;
-        LevelManager.currentExp = 0;
+        goldManager.gold = 0;
+        levelManager.level = 1;
+        levelManager.currentExp = 0;
     }
 
 
