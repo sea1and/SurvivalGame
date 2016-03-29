@@ -18,7 +18,7 @@ public class EnemyManager : MonoBehaviour
 
    IEnumerator Spawn ()
     {
-     yield return new WaitForSeconds (15); // время до первой волны в секуднах
+     yield return new WaitForSeconds (10); // время до первой волны в секуднах
         while (true)
         {
             if (playerHealth.currentHealth <= 0f)
@@ -29,7 +29,7 @@ public class EnemyManager : MonoBehaviour
             int spawnPointIndex = Random.Range(0, spawnPoints.Length);
 
             Instantiate(enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-            yield return new WaitForSeconds(10); // время между волнами в секундах
+            yield return new WaitForSeconds(7); // время между волнами в секундах
         }
     }
 }
