@@ -25,9 +25,9 @@ public class QuestManager : MonoBehaviour
     public int currentCounter = 0;
     AudioSource questCompleteAudio;
     quest currentQuest;
-    quest elephants = new quest(0, 1, 1, "Monsters to be killed: elephants");
-    quest pink = new quest(1, 3, 1, "Monsters to be killed: pink zombie");                //вторая цифра - множитель
-    quest green = new quest(2, 3, 1, "Monsters to be killed: green zombie");
+    quest elephants = new quest(0, 1, 1, "Elephants killer");
+    quest pink = new quest(1, 3, 1, "Pinks killer");                //вторая цифра - множитель
+    quest green = new quest(2, 3, 1, "Greens killer");
     public NotificationManager notificationManager;
     public LevelManager levelManager;
 

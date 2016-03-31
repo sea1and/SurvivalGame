@@ -16,13 +16,12 @@ public class NotificationManager : MonoBehaviour
     }
 	void Start ()
     {
+        Notify1.text="";
+        Notify2.text = "";
+        Notify3.text = "";
     }
 	
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Notify("232");
-        }
     }
 }

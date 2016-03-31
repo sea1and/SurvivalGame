@@ -7,10 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int startingHealth = 100;
+    public int maxHealth = 100;
     public int currentHealth;
 	public int defense;
     public Slider healthSlider;
+    public Text SliderText;
     public Image damageImage;
     public AudioClip deathClip;
     public float flashSpeed = 5f;
@@ -33,8 +34,9 @@ public class PlayerHealth : MonoBehaviour
         playerAudio = GetComponent <AudioSource> ();
         playerMovement = GetComponent <PlayerMovement> ();
         playerShooting = GetComponentInChildren <PlayerShooting> ();
-        currentHealth = startingHealth;
-		defense = 0;
+        currentHealth = maxHealth;
+        
+        defense = 0;
     }
 
 
@@ -49,6 +51,8 @@ public class PlayerHealth : MonoBehaviour
             damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
         damaged = false;
+        SliderText.text = currentHealth + "/" + maxHealth;
+        healthSlider.value = currentHealth;
     }
 
 
@@ -57,8 +61,7 @@ public class PlayerHealth : MonoBehaviour
         damaged = true;
 
 		currentHealth -= (int)((1 - 0.01*defense)*amount);
-
-        healthSlider.value = currentHealth;
+        SliderText.text = currentHealth + "/" + maxHealth;
 
         playerAudio.Play ();
 

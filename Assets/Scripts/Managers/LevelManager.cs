@@ -10,26 +10,30 @@ public class LevelManager : MonoBehaviour
     public int currentHealth;
     GameObject player;
     PlayerHealth playerHealth;
-
+    public NotificationManager notificationManager;
+    public PlayerStats playerStats;
     Slider expSlider;
-    Slider healthSlider;
     Text levelText;
+    public Text SliderText;
     AudioSource lvlupAudio;
-
     public void TakeExp(int count)
     {
         currentExp += count;
         if (currentExp >= level * 100)
         {
-            currentExp = currentExp - level * 100;
-            level += 1;
-            // playerHealth.currentHealth = playerHealth.startingHealth;
-            //healthSlider.value = currentHealth;
-            playerHealth.RestoreHP(100);
-            lvlupAudio.Play();
+            levelup();
         }
     }
 
+    public void levelup()
+    {
+        currentExp = currentExp - level * 100;
+        level++;
+        playerHealth.currentHealth = playerHealth.maxHealth;
+        lvlupAudio.Play();
+        notificationManager.Notify("Level "+level+"!");
+        playerStats.levelScore++;
+    }
 
     void Start()
     {
@@ -46,5 +50,6 @@ public class LevelManager : MonoBehaviour
         expSlider.maxValue = level * 100;
         expSlider.value = currentExp;
         levelText.text = level.ToString();
+        SliderText.text = currentExp +"/"+ level * 100;
     }
 }

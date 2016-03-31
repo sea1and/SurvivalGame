@@ -31,7 +31,7 @@ public class Inventory : MonoBehaviour {
 		database = GameObject.FindGameObjectWithTag ("ItemDatabase").GetComponent<ItemDatabase> ();
 		int slotamount = 0;
 
-		for (int i = 1; i < 5; i++) {
+		for (int i = 1; i < 6; i++) {
 			for (int j = 1; j < 5; j++) {
 				GameObject slot = (GameObject)Instantiate (slots);
 				slot.GetComponent<SlotScript> ().slotNumber = slotamount;
@@ -59,6 +59,10 @@ public class Inventory : MonoBehaviour {
 		addItem (6);
         addItem(7);
         addItem(8);
+        addItem(8);
+        addItem(8);
+        addItem(9);
+        addItem(9);
         addItem(9);
 
 

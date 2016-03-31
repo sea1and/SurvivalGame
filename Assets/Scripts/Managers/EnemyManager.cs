@@ -18,11 +18,7 @@ public class EnemyManager : MonoBehaviour
 
    IEnumerator Spawn ()
     {
-<<<<<<< HEAD
      yield return new WaitForSeconds (5); // время до первой волны в секуднах
-=======
-     yield return new WaitForSeconds (10); // время до первой волны в секуднах
->>>>>>> origin/master
         while (true)
         {
             if (playerHealth.currentHealth <= 0f)

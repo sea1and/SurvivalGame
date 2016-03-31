@@ -131,10 +131,10 @@ public class SlotScript : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPo
     }
     public void SpeedPotion()
     {
-        playerMovement.speed = 10;
+        playerMovement.speed+=2;
     }
     public void PowerPotion()
     {
-        playerShooting.timeBetweenBullets = 0.1f;
+        playerShooting.timeBetweenBullets -= 0.02f;
     }
 }
