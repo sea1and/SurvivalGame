@@ -6,6 +6,7 @@ public class PlayerShooting : MonoBehaviour
 	public int damageBonus;
     public float timeBetweenBullets = 0.20f;
     public float range = 100f;
+	public bool isShooting = false;
 
 
     float timer;
@@ -37,10 +38,12 @@ public class PlayerShooting : MonoBehaviour
 		if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
         {
             Shoot ();
+			isShooting = true;
         }
 
 		if (timer >= timeBetweenBullets * effectsDisplayTime) {
 			DisableEffects ();
+			isShooting = false;
 		}
 
     }
