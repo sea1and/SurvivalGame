@@ -3,6 +3,7 @@ using AllJoynUnity;
 using UnityEngine.UI;
 using System.Runtime.InteropServices;
 using System.Collections;
+using System.Collections.Generic;
 using System.Threading;
 
 
@@ -19,7 +20,6 @@ namespace multi
 			"tcp:addr=127.0.0.1,port=9955",
 			"launchd:"};
 		private string connectedVal;
-
 
 		private static AllJoyn.BusAttachment msgBus;
 		private MyBusListener busListener;
@@ -41,13 +41,19 @@ namespace multi
 
 		private bool isDuringGame = false;
 
-		public string receivedName = "";
-		public double recA;
-		public double recB;
-		public double recC;
-		public double recD;
-		public bool IsWalking;
-		public bool IsShooting;
+		public class PlayerData {
+			public string name;
+			public double posX;
+			public double posY;
+			public double posZ;
+			public double angleY;
+			public bool IsWalking;
+			public bool IsShooting;
+			public bool IsSpawned;
+		}
+
+		public List<PlayerData> playerDB = new List<PlayerData> ();
+
 		private static Mutex mutex = new Mutex();
 
 		private static bool allJoynDebugOn = false;
@@ -126,13 +132,33 @@ namespace multi
 		public void PlayerSignalHandler(AllJoyn.InterfaceDescription.Member member, string srcPath, AllJoyn.Message message)
 		{
 			if (playerNick != (string)message [0]) {
-				receivedName = (string)message [0];
-				recA = (double)message [1];
-				recB = (double)message [2];
-				recC = (double)message [3];
-				recD = (double)message [4];
-				IsWalking = (bool)message [5];
-				IsShooting = (bool)message [6];
+				int index = playerDB.FindIndex(
+					delegate(PlayerData data)
+					{
+						return data.name == (string)message[0];
+					});
+
+				if (index == -1) {
+					PlayerData temporaryData = new PlayerData();
+					temporaryData.name = (string)message [0];
+					temporaryData.posX = (double)message [1];
+					temporaryData.posY = (double)message [2];
+					temporaryData.posZ = (double)message [3];
+					temporaryData.angleY = (double)message [4];
+					temporaryData.IsWalking = (bool)message [5];
+					temporaryData.IsShooting = (bool)message [6];
+					temporaryData.IsSpawned = false;
+					playerDB.Add (temporaryData);
+				} 
+				else 
+				{
+					playerDB[index].posX = (double)message [1];
+					playerDB[index].posY = (double)message [2];
+					playerDB[index].posZ = (double)message [3];
+					playerDB[index].angleY = (double)message [4];
+					playerDB[index].IsWalking = (bool)message [5];
+					playerDB[index].IsShooting = (bool)message [6];
+				}
 			}
 		}
 

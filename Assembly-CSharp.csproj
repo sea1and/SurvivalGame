@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{43F7C3E1-1560-5641-59A9-936DBBA8C12A}</ProjectGuid>
+    <ProjectGuid>{2B2CEF85-F06E-DCD9-FA2E-A4905B19F945}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -68,6 +68,7 @@
      <Compile Include="Assets\Scripts\Misc\LootType.cs" />
      <Compile Include="Assets\Scripts\Misc\SlotScript.cs" />
      <Compile Include="Assets\Scripts\Network\AllJoynAgent.cs" />
+     <Compile Include="Assets\Scripts\Network\BodyScript.cs" />
      <Compile Include="Assets\Scripts\Network\ClientServer.cs" />
      <Compile Include="Assets\Scripts\Network\GunAnimation.cs" />
      <Compile Include="Assets\Scripts\Network\MultiplayerHandler.cs" />
@@ -159,7 +160,7 @@
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="alljoyn_unity">
- <HintPath>D:/Games/VS/Projects/SurvivalGameMain/Assets/Plugins/alljoyn_unity.dll</HintPath>
+ <HintPath>D:/Games/VS/Projects/Nightmares/Assets/Plugins/alljoyn_unity.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

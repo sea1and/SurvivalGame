@@ -65,6 +65,7 @@ GameObject:
   - 54: {fileID: 5464988}
   - 82: {fileID: 8287630}
   - 136: {fileID: 13613190}
+  - 114: {fileID: 11490630}
   m_Layer: 0
   m_Name: Body
   m_TagString: Body
@@ -347,6 +348,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42defaeb5a14dfa47a9338c512ba1f4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damagePerShot: 20
+  damageBonus: 0
+  timeBetweenBullets: 0.2
+  range: 100
+  isShooting: 0
+--- !u!114 &11490630
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b5120e1e75b5a428e062656879b163, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
 --- !u!120 &12038798
 LineRenderer:
   m_ObjectHideFlags: 1

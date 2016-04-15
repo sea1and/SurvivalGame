@@ -37,30 +37,16 @@ public class MultiplayerManager : MonoBehaviour
 			}
 
 		}
-
-		if (!isHereAnotherPlayerSpawned) {
-			if (clientServer.multiplayerHandler.receivedName != "") {
-				Quaternion rotat = new Quaternion();
-				rotat.eulerAngles = new Vector3(0, (float)clientServer.multiplayerHandler.recD, 0);
-				Instantiate (bodyPrefab, new Vector3 ((float)clientServer.multiplayerHandler.recA, (float)clientServer.multiplayerHandler.recB, (float)clientServer.multiplayerHandler.recC), rotat);
-				isHereAnotherPlayerSpawned = true;
+		if (clientServer.multiplayerHandler.playerDB.Count > 0) {
+			foreach (multi.MultiplayerHandler.PlayerData data in clientServer.multiplayerHandler.playerDB) {
+				if (!data.IsSpawned) {
+					Quaternion rotat = new Quaternion ();
+					rotat.eulerAngles = new Vector3 (0, (float)data.angleY, 0);
+					GameObject tempBody = (GameObject)Instantiate (bodyPrefab, new Vector3 ((float)data.posX, (float)data.posY, (float)data.posZ), rotat);
+					data.IsSpawned = true;
+					tempBody.GetComponent<BodyScript> ().name = data.name;
+				}
 			}
-		} 
-		else {
-				
-			Rigidbody body;
-			body = GameObject.FindGameObjectWithTag ("Body").GetComponent<Rigidbody>();
-			body.MovePosition (new Vector3 ((float)clientServer.multiplayerHandler.recA, (float)clientServer.multiplayerHandler.recB, (float)clientServer.multiplayerHandler.recC));
-
-			//body.MoveRotation (new Quaternion (0f, (float)clientServer.multiplayerHandler.recD, 0f, 0f));
-			GameObject Body;
-			Body = GameObject.FindGameObjectWithTag ("Body");
-
-			Quaternion rot = new Quaternion();
-			rot.eulerAngles = new Vector3(0, (float)clientServer.multiplayerHandler.recD, 0);
-			Body.transform.rotation = rot;
-			Body.GetComponent<Animator> ().SetBool ("IsWalking", clientServer.multiplayerHandler.IsWalking);
-			Body.GetComponentInChildren<GunAnimation> ().isShooting = clientServer.multiplayerHandler.IsShooting;
 		}
 	
 	}
