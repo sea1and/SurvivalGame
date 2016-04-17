@@ -45,3 +45,11 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+*.cache
+/Library/metadata/*
+/Library/ScriptAssemblies/*
+/Library/ShaderCache/*
+/Temp/*
+/obj/*
+NightmaresWorking.userprefs

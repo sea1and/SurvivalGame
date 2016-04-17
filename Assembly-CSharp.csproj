@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{2B2CEF85-F06E-DCD9-FA2E-A4905B19F945}</ProjectGuid>
+    <ProjectGuid>{84C13A01-AF7C-DB2D-8354-B6DED331B1C2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -160,7 +160,7 @@
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="alljoyn_unity">
- <HintPath>D:/Games/VS/Projects/Nightmares/Assets/Plugins/alljoyn_unity.dll</HintPath>
+ <HintPath>D:/Games/VS/Projects/NightmaresWorking/Assets/Plugins/alljoyn_unity.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

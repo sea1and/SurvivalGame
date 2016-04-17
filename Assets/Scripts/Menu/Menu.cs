@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class Menu : MonoBehaviour {
 
     public void NewGame()
     {
-        Application.LoadLevel(1);
+		SceneManager.LoadScene ("MainScene");
     }
     /*public void Button
     {
