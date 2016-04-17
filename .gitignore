@@ -47,9 +47,9 @@ Temporary Items
 .apdisk
 
 *.cache
-/Library/metadata/*
-/Library/ScriptAssemblies/*
-/Library/ShaderCache/*
-/Temp/*
-/obj/*
+Library/metadata/
+Library/ScriptAssemblies/
+Library/ShaderCache/
+Temp/
+obj/
 NightmaresWorking.userprefs
