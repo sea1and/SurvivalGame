@@ -64,9 +64,9 @@ public class QuestManager : MonoBehaviour
         else
         if (currentQuest.id == 2) green.difficulty++;
         questCompleteAudio.Play();
-        levelManager.TakeExp(currentQuest.difficulty * 50);
+        levelManager.TakeExp(currentQuest.difficulty*50);
         nextQuest();
-        notificationManager.Notify("Quest complete +" + currentQuest.difficulty * 50 + "xp");
+        notificationManager.Notify("Quest complete +"+ currentQuest.difficulty * 50 + "xp");
     }
 
     public void Zeroing()
@@ -86,7 +86,7 @@ public class QuestManager : MonoBehaviour
         outText.text = currentQuest.text + "(" + currentCounter + " / " + currentQuest.multiplier * currentQuest.difficulty + ")";
     }
 
-    void Start()
+    void Start ()
     {
         outText = GameObject.FindGameObjectWithTag("QuestText").GetComponent<Text>();
         questCompleteAudio = GameObject.FindGameObjectWithTag("QuestText").GetComponent<AudioSource>();
@@ -94,7 +94,7 @@ public class QuestManager : MonoBehaviour
         outText.text = currentQuest.text + "(" + currentCounter + " / " + currentQuest.multiplier * currentQuest.difficulty + ")";
     }
 
-    void Update()
-    {
-    }
+    void Update ()
+	{
+	}
 }

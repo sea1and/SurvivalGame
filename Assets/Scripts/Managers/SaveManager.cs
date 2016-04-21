@@ -9,13 +9,13 @@ using UnityEngine.UI;
 public class SaveManager : MonoBehaviour
 {
     public LevelManager levelManager;
-    // public GoldManager goldManager;
+    public GoldManager goldManager;
     public NotificationManager notificationManager;
 
     private void Start()
     {
     }
-
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F5))
@@ -30,19 +30,19 @@ public class SaveManager : MonoBehaviour
 
     public void SaveGame()
     {
-        int gold = GoldManager.Instance.gold;
+        int gold = goldManager.gold;
         int level = levelManager.level;
         int currentexp = levelManager.currentExp;
-        File.WriteAllText("Save.txt", gold + Environment.NewLine + level + Environment.NewLine + currentexp);
+        File.WriteAllText("Save.txt", gold + Environment.NewLine + level + Environment.NewLine +  currentexp);
         notificationManager.Notify("Game Saved!");
     }
 
     public void LoadGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(1);
         FileStream file1 = new FileStream("Save.txt", FileMode.Open); //создаем файловый поток
         StreamReader reader = new StreamReader(file1); // создаем «потоковый читатель» и связываем его с файловым потоком 
-        GoldManager.Instance.gold = int.Parse(reader.ReadLine());
+        goldManager.gold = int.Parse(reader.ReadLine());
         levelManager.level = int.Parse(reader.ReadLine());
         levelManager.currentExp = int.Parse(reader.ReadLine());
     }

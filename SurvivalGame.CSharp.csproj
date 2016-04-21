@@ -58,6 +58,12 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -73,7 +79,6 @@
     <Compile Include="Assets\Scripts\Managers\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Managers\GameOverManager.cs" />
     <Compile Include="Assets\Scripts\Managers\GoldManager.cs" />
-    <Compile Include="Assets\Scripts\Managers\GoldTextManager.cs" />
     <Compile Include="Assets\Scripts\Managers\LevelManager.cs" />
     <Compile Include="Assets\Scripts\Managers\NotificationManager.cs" />
     <Compile Include="Assets\Scripts\Managers\Pause.cs" />
@@ -90,7 +95,6 @@
     <Compile Include="Assets\Scripts\Misc\LootType.cs" />
     <Compile Include="Assets\Scripts\Misc\SlotScript.cs" />
     <Compile Include="Assets\Scripts\Network\AllJoynAgent.cs" />
-    <Compile Include="Assets\Scripts\Network\BodyScript.cs" />
     <Compile Include="Assets\Scripts\Network\ClientServer.cs" />
     <Compile Include="Assets\Scripts\Network\GunAnimation.cs" />
     <Compile Include="Assets\Scripts\Network\MultiplayerHandler.cs" />

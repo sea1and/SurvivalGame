@@ -19,67 +19,66 @@ public class EnemyHealth : MonoBehaviour
     GameObject player;
     GameObject levelUI;
     GameObject gold;
-    public QuestManager questManager;
+    public QuestManager questManager ;
     public LevelManager levelManager;
-    //  public GoldManager goldManager;
+    public GoldManager goldManager;
 
-    void Awake()
+    void Awake ()
     {
-        anim = GetComponent<Animator>();
-        enemyAudio = GetComponent<AudioSource>();
-        hitParticles = GetComponentInChildren<ParticleSystem>();
-        capsuleCollider = GetComponent<CapsuleCollider>();
+        anim = GetComponent <Animator> ();
+        enemyAudio = GetComponent <AudioSource> ();
+        hitParticles = GetComponentInChildren <ParticleSystem> ();
+        capsuleCollider = GetComponent <CapsuleCollider> ();
         player = GameObject.FindGameObjectWithTag("Player");
         questManager = player.GetComponent<QuestManager>();
         levelUI = GameObject.FindGameObjectWithTag("Level");
         levelManager = levelUI.GetComponent<LevelManager>();
         gold = GameObject.FindGameObjectWithTag("Gold");
-        //  goldManager = gold.GetComponent<GoldManager>();
+        goldManager = gold.GetComponent<GoldManager>();
         currentHealth = startingHealth;
     }
 
 
-    void Update()
+    void Update ()
     {
-        if (isSinking)
+        if(isSinking)
         {
-            transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
+            transform.Translate (-Vector3.up * sinkSpeed * Time.deltaTime);
         }
     }
 
 
-    public void TakeDamage(int amount, Vector3 hitPoint)
+    public void TakeDamage (int amount, Vector3 hitPoint)
     {
-        if (isDead)
+        if(isDead)
             return;
 
-        enemyAudio.Play();
+        enemyAudio.Play ();
 
         currentHealth -= amount;
-
+            
         hitParticles.transform.position = hitPoint;
         hitParticles.Play();
 
-        if (currentHealth <= 0)
+        if(currentHealth <= 0)
         {
-            Death();
+            Death ();
         }
     }
 
-    void Death()
+    void Death ()
     {
         isDead = true;
 
         capsuleCollider.isTrigger = true;
 
-        anim.SetTrigger("Dead");
+        anim.SetTrigger ("Dead");
         enemyAudio.clip = deathClip;
-        enemyAudio.Play();
+        enemyAudio.Play ();
         questManager.EnemyKilled(enemyType);
         int randnum = Random.Range(0, 14);
-        if (randnum == 0)
-        {
-            SpawnLoot();
+        if (randnum == 0) { 
+        SpawnLoot();
         }
     }
 
@@ -88,13 +87,13 @@ public class EnemyHealth : MonoBehaviour
         Instantiate(Loot, gameObject.transform.position, Quaternion.identity);
     }
 
-    public void StartSinking()
+    public void StartSinking ()
     {
-        GetComponent<NavMeshAgent>().enabled = false;
-        GetComponent<Rigidbody>().isKinematic = true;
+        GetComponent <NavMeshAgent> ().enabled = false;
+        GetComponent <Rigidbody> ().isKinematic = true;
         isSinking = true;
-        GoldManager.Instance.gold += scoreValue;
+        goldManager.gold += scoreValue;
         levelManager.TakeExp(scoreValue);
-        Destroy(gameObject, 2f);
+        Destroy (gameObject, 2f);
     }
 }

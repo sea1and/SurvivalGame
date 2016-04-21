@@ -4,30 +4,17 @@ using System.Collections;
 
 public class GoldManager : MonoBehaviour
 {
+    public int gold = 0;
 
-    public static GoldManager Instance;
-    public int gold;
-    void Awake()
+    Text text;
+
+    void Awake ()
     {
-        if (null == Instance)
-        {
-            GameObject gam = gameObject;
-            GameObject trams = transform.gameObject;
-            DontDestroyOnLoad(gameObject);
-
-            Instance = this;
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
-
-
-
+        text = GetComponent <Text> ();
     }
 
-    void Update()
+    void Update ()
     {
-    
+        text.text = "Gold: " + gold;
     }
 }
