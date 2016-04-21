@@ -1,9 +1,13 @@
-﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\ShopManager.cs">
+﻿<Properties StartupItem="SurvivalGame.CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemy\EnemyHealth.cs">
     <Files>
-      <File FileName="Assets\Scripts\Managers\ShopManager.cs" Line="32" Column="4" />
-      <File FileName="Assets\Scripts\Enemy\EnemyHealth.cs" Line="84" Column="20" />
+      <File FileName="Assets\Scripts\Enemy\EnemyHealth.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\GoldManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\ShopManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\SaveManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\GameOverManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\GoldTextManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Misc\ItemDatabase.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
