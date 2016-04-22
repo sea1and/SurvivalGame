@@ -9,13 +9,13 @@ using UnityEngine.UI;
 public class SaveManager : MonoBehaviour
 {
     public LevelManager levelManager;
-    public GoldManager goldManager;
+    // public GoldManager goldManager;
     public NotificationManager notificationManager;
 
     private void Start()
     {
     }
-    
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F5))
@@ -30,20 +30,23 @@ public class SaveManager : MonoBehaviour
 
     public void SaveGame()
     {
-        int gold = goldManager.gold;
-        int level = levelManager.level;
-        int currentexp = levelManager.currentExp;
-        File.WriteAllText("Save.txt", gold + Environment.NewLine + level + Environment.NewLine +  currentexp);
+        int gold = GoldManager.Instance.gold;
+        int level = GoldManager.Instance.level;
+        int currentexp = GoldManager.Instance.currentExp;
+        File.WriteAllText("Save.txt", gold + Environment.NewLine + level + Environment.NewLine + currentexp);
         notificationManager.Notify("Game Saved!");
     }
 
+   
+
+
     public void LoadGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         FileStream file1 = new FileStream("Save.txt", FileMode.Open); //создаем файловый поток
         StreamReader reader = new StreamReader(file1); // создаем «потоковый читатель» и связываем его с файловым потоком 
-        goldManager.gold = int.Parse(reader.ReadLine());
-        levelManager.level = int.Parse(reader.ReadLine());
-        levelManager.currentExp = int.Parse(reader.ReadLine());
+        GoldManager.Instance.gold = int.Parse(reader.ReadLine());
+        GoldManager.Instance.level = int.Parse(reader.ReadLine());
+        GoldManager.Instance.currentExp = int.Parse(reader.ReadLine());
     }
 }

@@ -33,7 +33,7 @@ GameObject:
   - 82: {fileID: 8240668}
   - 114: {fileID: 11492522}
   - 114: {fileID: 11486432}
-  - 114: {fileID: 11402014}
+  - 114: {fileID: 11477138}
   m_Layer: 9
   m_Name: Zombie_Green
   m_TagString: Untagged
@@ -201,7 +201,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 0
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11402014
+--- !u!114 &11477138
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -216,9 +216,11 @@ MonoBehaviour:
   currentHealth: 0
   sinkSpeed: 2.5
   scoreValue: 10
-  deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
+  deathClip: {fileID: 0}
   Loot: {fileID: 199042, guid: 95e73b4a8a0bdc649967e9aeb6ea74b9, type: 2}
   enemyType: 2
+  questManager: {fileID: 0}
+  levelManager: {fileID: 0}
 --- !u!114 &11486432
 MonoBehaviour:
   m_ObjectHideFlags: 1

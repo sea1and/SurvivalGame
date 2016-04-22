@@ -97,8 +97,8 @@ public class PlayerHealth : MonoBehaviour
         playerMovement.enabled = false;
         playerShooting.enabled = false;
         goldManager.gold = 0;
-        levelManager.level = 1;
-        levelManager.currentExp = 0;
+        GoldManager.Instance.level = 1;
+        GoldManager.Instance.currentExp = 0;
     }
 
 

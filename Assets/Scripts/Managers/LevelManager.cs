@@ -5,8 +5,7 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
 
-    public int currentExp = 0;
-    public int level = 1;
+    
     public int currentHealth;
     GameObject player;
     PlayerHealth playerHealth;
@@ -18,8 +17,8 @@ public class LevelManager : MonoBehaviour
     AudioSource lvlupAudio;
     public void TakeExp(int count)
     {
-        currentExp += count;
-        if (currentExp >= level * 100)
+        GoldManager.Instance.currentExp += count;
+        if (GoldManager.Instance.currentExp >= GoldManager.Instance.level * 100)
         {
             levelup();
         }
@@ -27,11 +26,12 @@ public class LevelManager : MonoBehaviour
 
     public void levelup()
     {
-        currentExp = currentExp - level * 100;
-        level++;
+        // вместо level юзать  GoldManager.Instance.level и GoldManager.Instance.currentExp
+        GoldManager.Instance.currentExp = GoldManager.Instance.currentExp - GoldManager.Instance.level * 100;
+        GoldManager.Instance.level++;
         playerHealth.currentHealth = playerHealth.maxHealth;
         lvlupAudio.Play();
-        notificationManager.Notify("Level "+level+"!");
+        notificationManager.Notify("Level "+ GoldManager.Instance.level + "!");
         playerStats.levelScore++;
     }
 
@@ -47,9 +47,9 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        expSlider.maxValue = level * 100;
-        expSlider.value = currentExp;
-        levelText.text = level.ToString();
-        SliderText.text = currentExp +"/"+ level * 100;
+        expSlider.maxValue = GoldManager.Instance.level * 100;
+        expSlider.value = GoldManager.Instance.currentExp;
+        levelText.text = GoldManager.Instance.level.ToString();
+        SliderText.text = GoldManager.Instance.currentExp + "/"+ GoldManager.Instance.level * 100;
     }
 }
