@@ -21,7 +21,7 @@ public class EnemyHealth : MonoBehaviour
     GameObject gold;
     public QuestManager questManager;
     public LevelManager levelManager;
-    //  public GoldManager goldManager;
+    //  public GameManager GameManager;
 
     void Awake()
     {
@@ -34,7 +34,7 @@ public class EnemyHealth : MonoBehaviour
         levelUI = GameObject.FindGameObjectWithTag("Level");
         levelManager = levelUI.GetComponent<LevelManager>();
         gold = GameObject.FindGameObjectWithTag("Gold");
-        //  goldManager = gold.GetComponent<GoldManager>();
+        //  GameManager = gold.GetComponent<GameManager>();
         currentHealth = startingHealth;
     }
 
@@ -93,7 +93,7 @@ public class EnemyHealth : MonoBehaviour
         GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
         isSinking = true;
-        GoldManager.Instance.gold += scoreValue;
+        GameManager.Instance.gold += scoreValue;
         levelManager.TakeExp(scoreValue);
         Destroy(gameObject, 2f);
     }

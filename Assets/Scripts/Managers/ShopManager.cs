@@ -8,7 +8,7 @@ public class ShopManager : MonoBehaviour
     public Inventory inv;
     RaycastHit hit;
     public bool shopOpen;
-    // public GoldManager goldManager;
+    // public GameManager GameManager;
 
     void Start()
     {
@@ -39,27 +39,27 @@ public class ShopManager : MonoBehaviour
    
     public void buyRapier()
     {
-        if (GoldManager.Instance.gold >= 1000)
+        if (GameManager.Instance.gold >= 1000)
         {
-            GoldManager.Instance.gold -= 1000;
+            GameManager.Instance.gold -= 1000;
             inv.addItem(2);
         }
     }
 
     public void buyHP()
     {
-        if (GoldManager.Instance.gold >= 300)
+        if (GameManager.Instance.gold >= 300)
         {
-            GoldManager.Instance.gold -= 300;
+            GameManager.Instance.gold -= 300;
             inv.addItem(1);
         }
     }
 
     public void buyArmor()
     {
-        if (GoldManager.Instance.gold >= 1000)
+        if (GameManager.Instance.gold >= 1000)
         {
-            GoldManager.Instance.gold -= 1000;
+            GameManager.Instance.gold -= 1000;
             inv.addItem(0);
         }
     }

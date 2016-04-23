@@ -663,11 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a397d3af43abf4cac6a9975948c048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SlonCounter: 0
-  PinkCounter: 0
-  GreenCounter: 0
   outText: {fileID: 0}
-  currentCounter: 0
   notificationManager: {fileID: 0}
   levelManager: {fileID: 0}
 --- !u!114 &16552473
@@ -7435,11 +7431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a397d3af43abf4cac6a9975948c048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SlonCounter: 0
-  PinkCounter: 0
-  GreenCounter: 0
   outText: {fileID: 0}
-  currentCounter: 0
   notificationManager: {fileID: 1366681725}
   levelManager: {fileID: 1507502850}
 --- !u!114 &324803206
@@ -16301,7 +16293,7 @@ GameObject:
   - 4: {fileID: 674799565}
   - 114: {fileID: 674799564}
   m_Layer: 0
-  m_Name: GoldManager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16321,6 +16313,10 @@ MonoBehaviour:
   gold: 0
   currentExp: 0
   level: 1
+  currentCounter: 0
+  SlonCounter: 0
+  PinkCounter: 0
+  GreenCounter: 0
 --- !u!4 &674799565
 Transform:
   m_ObjectHideFlags: 0

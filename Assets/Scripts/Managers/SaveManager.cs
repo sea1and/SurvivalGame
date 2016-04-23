@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class SaveManager : MonoBehaviour
 {
     public LevelManager levelManager;
-    // public GoldManager goldManager;
+    // public GameManager GameManager;
     public NotificationManager notificationManager;
 
     private void Start()
@@ -30,23 +30,60 @@ public class SaveManager : MonoBehaviour
 
     public void SaveGame()
     {
-        int gold = GoldManager.Instance.gold;
-        int level = GoldManager.Instance.level;
-        int currentexp = GoldManager.Instance.currentExp;
-        File.WriteAllText("Save.txt", gold + Environment.NewLine + level + Environment.NewLine + currentexp);
+        int gold = GameManager.Instance.gold;
+        int level = GameManager.Instance.level;
+        int currentexp = GameManager.Instance.currentExp;
+        int questId = GameManager.Instance.currentQuest.id;
+        int slonDifficulty = GameManager.Instance.elephants.difficulty;
+        int pinkDifficulty = GameManager.Instance.pink.difficulty;
+        int greenDifficulty = GameManager.Instance.green.difficulty;
+        int currentCounter = GameManager.Instance.currentCounter;
+        int slonCounter = GameManager.Instance.SlonCounter;
+        int pinkCounter = GameManager.Instance.PinkCounter;
+        int greenCounter = GameManager.Instance.GreenCounter;
+        File.WriteAllText("Save.txt", gold + Environment.NewLine + level + Environment.NewLine + currentexp
+    + Environment.NewLine + slonDifficulty + Environment.NewLine
+   + pinkDifficulty+  Environment.NewLine + greenDifficulty + Environment.NewLine + questId + Environment.NewLine + currentCounter
+   + Environment.NewLine + slonCounter + Environment.NewLine + pinkCounter + Environment.NewLine + greenCounter);
+
         notificationManager.Notify("Game Saved!");
     }
 
-   
 
 
+    public void LoadQuest(int questId)
+    {
+        if (questId == 0)
+            GameManager.Instance.currentQuest = GameManager.Instance.elephants;
+        else if (questId == 1)
+            GameManager.Instance.currentQuest = GameManager.Instance.pink;
+        else if (questId == 2)
+            GameManager.Instance.currentQuest = GameManager.Instance.green;
+    }
     public void LoadGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         FileStream file1 = new FileStream("Save.txt", FileMode.Open); //создаем файловый поток
         StreamReader reader = new StreamReader(file1); // создаем «потоковый читатель» и связываем его с файловым потоком 
-        GoldManager.Instance.gold = int.Parse(reader.ReadLine());
-        GoldManager.Instance.level = int.Parse(reader.ReadLine());
-        GoldManager.Instance.currentExp = int.Parse(reader.ReadLine());
+        GameManager.Instance.gold = int.Parse(reader.ReadLine());
+        GameManager.Instance.level = int.Parse(reader.ReadLine());
+        GameManager.Instance.currentExp = int.Parse(reader.ReadLine());
+
+        
+        GameManager.Instance.elephants.difficulty = int.Parse(reader.ReadLine());
+        GameManager.Instance.pink.difficulty = int.Parse(reader.ReadLine());
+        GameManager.Instance.green.difficulty = int.Parse(reader.ReadLine());
+
+        int questId = int.Parse(reader.ReadLine());
+        LoadQuest(questId);
+
+        GameManager.Instance.currentCounter = int.Parse(reader.ReadLine());
+        GameManager.Instance.SlonCounter = int.Parse(reader.ReadLine());
+        GameManager.Instance.PinkCounter = int.Parse(reader.ReadLine());
+        GameManager.Instance.GreenCounter = int.Parse(reader.ReadLine());
+        
+
+
+
     }
 }

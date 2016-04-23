@@ -26,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
     bool isDead;
     bool damaged;
     public LevelManager levelManager;
-    public GoldManager goldManager;
+    public GameManager GameManager;
 
     void Awake ()
     {
@@ -96,9 +96,9 @@ public class PlayerHealth : MonoBehaviour
 
         playerMovement.enabled = false;
         playerShooting.enabled = false;
-        goldManager.gold = 0;
-        GoldManager.Instance.level = 1;
-        GoldManager.Instance.currentExp = 0;
+        GameManager.Instance.gold = 0;
+        GameManager.Instance.level = 1;
+        GameManager.Instance.currentExp = 0;
     }
 
 
