@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Pause : MonoBehaviour
 {
-    public float timing;
+    
     public bool isPaused;
     public GameObject menu;
 
@@ -14,25 +14,20 @@ public class Pause : MonoBehaviour
 
     void Update()
     {
-        Time.timeScale = timing;
+        //Time.timeScale = timing;
         if (Input.GetKeyDown(KeyCode.Escape) && isPaused == false)
         {
+            Time.timeScale = 0;
             isPaused = true;
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && isPaused == true)
         {
+            Time.timeScale = 1;
             isPaused = false;
         }
-        if (isPaused == true)
-        {
-            timing = 0;
-            menu.SetActive(true);
-        }
-        else if (isPaused == false)
-        {
-            timing = 1;
-            menu.SetActive(false);
-        }
+        
+        menu.SetActive(isPaused);
+       
     }
 
     public void ResumeButton(bool state)

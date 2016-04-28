@@ -34,18 +34,28 @@ public class PlayerMovement : MonoBehaviour
 	 	Turning ();
 		Animating (h, v);
 		
-		if(Input.GetKeyDown(KeyCode.E)) {
-			if (invShown) {
-				invShown = false;
-				inv.SetActive (false);
-				//chMenu.SetActive (false);
-			}
-            else { invShown = true; inv.SetActive(true); }
-            //else { invShown = true; inv.SetActive(true); chMenu.SetActive(true); }
-        }
+		
 		
 		
 	}
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.E)) {
+            if (invShown)
+            {
+                invShown = false;
+                inv.SetActive(false);
+                Time.timeScale = 1;
+                //chMenu.SetActive (false);
+            }
+            else
+            {
+                invShown = true; inv.SetActive(true);
+                Time.timeScale = 0;
+            }
+            //else { invShown = true; inv.SetActive(true); chMenu.SetActive(true); }
+        }
+    }
 
 	void Move(float h, float v) {
 		movement.Set (h, 0f, v);
