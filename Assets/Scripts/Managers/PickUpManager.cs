@@ -19,23 +19,13 @@ public class PickUpManager : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag ("Player");
 		inv = canv.GetComponent<Inventory>();
 	}
-
+    public void PickUp(GameObject item) {
+        Destroy(item);
+        inv.addItem(item.GetComponent<LootType>().LootID);
+        PickUpSound.Play();
+    }
 	void Update() {
-		ItemsList = GameObject.FindGameObjectsWithTag("Loot");
-	
-		if (ItemsList != null) {
-			for (int i = 0; i < ItemsList.Length; i++) {
-				if (ItemsList [i] != null) {
-					Vector3 vec;
-					vec = player.transform.position - ItemsList [i].transform.position;
-					if (vec.magnitude <= 1) {
-						Destroy (ItemsList [i]);
-						inv.addItem(ItemsList[i].GetComponent<LootType>().LootID);
-						PickUpSound.Play ();
-					}
-				}
-			}
-		}
+		
 	}
 
 }

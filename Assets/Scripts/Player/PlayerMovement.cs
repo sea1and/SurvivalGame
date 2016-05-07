@@ -26,36 +26,42 @@ public class PlayerMovement : MonoBehaviour
 		Cursor.SetCursor (cursorTexture, hotSpot, cursorMode);
 	}
 
-	void FixedUpdate() {
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (invShown)
+            {
+                invShown = false;
+                Time.timeScale = 1;
+                inv.SetActive(false);
+
+                //chMenu.SetActive (false);
+            }
+            else
+            {
+                invShown = true;
+                Time.timeScale = 0;
+                inv.SetActive(true);
+
+            }
+            //else { invShown = true; inv.SetActive(true); chMenu.SetActive(true); }
+        }
+    }
+
+    void OnTriggerEnter(Collider obj) {
+        if (obj.tag == "Loot") {
+            gameObject.GetComponent<PickUpManager>().PickUp(obj.gameObject);
+        }
+    }
+
+    void FixedUpdate() {
 		float h = Input.GetAxisRaw ("Horizontal");
 		float v = Input.GetAxisRaw ("Vertical");
 
 		Move (h, v);
 	 	Turning ();
-		Animating (h, v);
-		
-		
-		
-		
+        Animating(h, v);
 	}
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.E)) {
-            if (invShown)
-            {
-                invShown = false;
-                inv.SetActive(false);
-                Time.timeScale = 1;
-                //chMenu.SetActive (false);
-            }
-            else
-            {
-                invShown = true; inv.SetActive(true);
-                Time.timeScale = 0;
-            }
-            //else { invShown = true; inv.SetActive(true); chMenu.SetActive(true); }
-        }
-    }
 
 	void Move(float h, float v) {
 		movement.Set (h, 0f, v);

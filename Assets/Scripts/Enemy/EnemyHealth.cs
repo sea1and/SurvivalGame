@@ -21,7 +21,7 @@ public class EnemyHealth : MonoBehaviour
     GameObject gold;
     public QuestManager questManager;
     public LevelManager levelManager;
-    //  public GameManager GameManager;
+    //  public GoldManager goldManager;
 
     void Awake()
     {
@@ -34,7 +34,7 @@ public class EnemyHealth : MonoBehaviour
         levelUI = GameObject.FindGameObjectWithTag("Level");
         levelManager = levelUI.GetComponent<LevelManager>();
         gold = GameObject.FindGameObjectWithTag("Gold");
-        //  GameManager = gold.GetComponent<GameManager>();
+        //  goldManager = gold.GetComponent<GoldManager>();
         currentHealth = startingHealth;
     }
 

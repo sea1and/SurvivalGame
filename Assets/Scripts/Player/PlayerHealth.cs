@@ -26,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
     bool isDead;
     bool damaged;
     public LevelManager levelManager;
-    public GameManager GameManager;
+    // public GameManager. GameManager.;
 
     void Awake ()
     {

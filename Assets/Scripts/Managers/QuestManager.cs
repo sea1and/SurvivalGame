@@ -3,11 +3,11 @@ using UnityEngine.UI;
 
 public class QuestManager : MonoBehaviour
 {
-   
+    
     public Text outText;
     
     AudioSource questCompleteAudio;
-
+    
     public NotificationManager notificationManager;
     public LevelManager levelManager;
 
@@ -63,18 +63,18 @@ public class QuestManager : MonoBehaviour
         if (GameManager.Instance.currentQuest.id == 1) GameManager.Instance.currentQuest = GameManager.Instance.green;
         else
         if (GameManager.Instance.currentQuest.id == 2) GameManager.Instance.currentQuest = GameManager.Instance.elephants;
-        
-    }
+            }
 
     void Start()
     {
         outText = GameObject.FindGameObjectWithTag("QuestText").GetComponent<Text>();
         questCompleteAudio = GameObject.FindGameObjectWithTag("QuestText").GetComponent<AudioSource>();
         //GameManager.Instance.currentQuest = GameManager.Instance.elephants;
+        
     }
 
     void Update()
     {
-          outText.text = GameManager.Instance.currentQuest.text + "(" + GameManager.Instance.currentCounter + " / " + GameManager.Instance.currentQuest.multiplier * GameManager.Instance.currentQuest.difficulty + ")";
+        outText.text = GameManager.Instance.currentQuest.text + "(" + GameManager.Instance.currentCounter + " / " + GameManager.Instance.currentQuest.multiplier * GameManager.Instance.currentQuest.difficulty + ")";
     }
 }

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour {
 
 	public List<GameObject> Slots = new List<GameObject> ();
+    public GameObject RemoveSlot;
+    public GameObject removeSlotPrefab;
 	public List<Item> Items = new List<Item>();
 	public GameObject slots;
 	ItemDatabase database;
@@ -19,12 +21,15 @@ public class Inventory : MonoBehaviour {
 	public Item draggedItem;
 	public int indexOfDraggedItem;
 
+    public int heightCoord = 0, weightCoord = 0;
+
 	void Update() {
 		if (draggingItem) {
 			Vector3 posi = (Input.mousePosition - GameObject.FindGameObjectWithTag ("Canvas").GetComponent<RectTransform> ().localPosition);
 			draggedItemGameObject.GetComponent<RectTransform> ().localPosition = new Vector3 (posi.x + 15, posi.y - 15, posi.z);
 		}
-	}
+        RemoveSlot.GetComponent<RectTransform>().localPosition = new Vector3(heightCoord, weightCoord, 0);
+    }
 
 	void Start () {
 
@@ -47,9 +52,16 @@ public class Inventory : MonoBehaviour {
 					y -= 55;
 				}
 				slotamount++;
-			}
-		}
 
+                
+            }
+            GameObject RemoveSlot = (GameObject)Instantiate(removeSlotPrefab);
+            RemoveSlot.transform.parent = this.gameObject.transform;
+            RemoveSlot.GetComponent<RectTransform>().localPosition = new Vector3(270, -120, 0);
+
+        }
+
+         
 		addItem (0);
         addItem (1);
 		addItem (2);
@@ -118,19 +130,23 @@ public class Inventory : MonoBehaviour {
 	public void closeTooltip() {
 		tooltip.SetActive (false);
 	}
-
+    
 	public void showDraggedItem(Item item, int slotNumber) {
-		indexOfDraggedItem = slotNumber;
+        
+        indexOfDraggedItem = slotNumber;
 		closeTooltip ();
 		draggedItemGameObject.SetActive(true);
 		draggedItem = item;
 		draggingItem = true;
 		draggedItemGameObject.GetComponent<Image>().sprite = item.itemIcon;
-
+        
 	}
 
-	public void closeDraggedItem() {
-		draggingItem = false;
+	public void closeDraggedItem() { 
+   
+        draggingItem = false;
 		draggedItemGameObject.SetActive(false);
-	}
+	    
+    }
+    
 }

@@ -759,7 +759,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -781,7 +781,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!1001 &17357374
 Prefab:
   m_ObjectHideFlags: 0
@@ -7458,6 +7458,19 @@ MonoBehaviour:
   playerMovement: {fileID: 324803200}
   playerShooting: {fileID: 13358135}
   levelScore: 0
+--- !u!114 &324803207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 324803199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cedeb21ba7d6a284596628362a54455a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canv: {fileID: 1721731307}
+  PickUpClip: {fileID: 8300000, guid: 355d41f42fa31744b89f9eadd2f26b5c, type: 3}
 --- !u!4 &329285344 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: e80a90665c8b01142a7527f62c403773, type: 2}
@@ -16293,7 +16306,7 @@ GameObject:
   - 4: {fileID: 674799565}
   - 114: {fileID: 674799564}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: GoldManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22736,7 +22749,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 886554635}
   - 82: {fileID: 886554634}
-  - 114: {fileID: 886554633}
   m_Layer: 0
   m_Name: PickUpManager
   m_TagString: Untagged
@@ -22744,19 +22756,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &886554633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 886554632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cedeb21ba7d6a284596628362a54455a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canv: {fileID: 1721731307}
-  PickUpClip: {fileID: 8300000, guid: 355d41f42fa31744b89f9eadd2f26b5c, type: 3}
 --- !u!82 &886554634
 AudioSource:
   m_ObjectHideFlags: 0
@@ -31216,7 +31215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c8d6de68c97e944ad81d9bbefb0942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timing: 0
   isPaused: 0
   menu: {fileID: 1972130155}
 --- !u!224 &1223925030
@@ -43193,11 +43191,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Slots: []
+  RemoveSlot: {fileID: 0}
+  removeSlotPrefab: {fileID: 138962, guid: 90b23854274f49e42a187606b4212061, type: 2}
   slots: {fileID: 138962, guid: 5761c5344cebf0045bdf3a3fa135a366, type: 2}
   tooltip: {fileID: 778363483}
   draggedItemGameObject: {fileID: 4251611}
   draggingItem: 0
   indexOfDraggedItem: 0
+  heightCoord: 0
+  weightCoord: 0
 --- !u!114 &1721731310
 MonoBehaviour:
   m_ObjectHideFlags: 0

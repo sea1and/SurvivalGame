@@ -33,26 +33,29 @@ public class SaveManager : MonoBehaviour
         int gold = GameManager.Instance.gold;
         int level = GameManager.Instance.level;
         int currentexp = GameManager.Instance.currentExp;
+
         int questId = GameManager.Instance.currentQuest.id;
+
         int slonDifficulty = GameManager.Instance.elephants.difficulty;
         int pinkDifficulty = GameManager.Instance.pink.difficulty;
         int greenDifficulty = GameManager.Instance.green.difficulty;
+
+
         int currentCounter = GameManager.Instance.currentCounter;
         int slonCounter = GameManager.Instance.SlonCounter;
         int pinkCounter = GameManager.Instance.PinkCounter;
         int greenCounter = GameManager.Instance.GreenCounter;
-        File.WriteAllText("Save.txt", gold + Environment.NewLine + level + Environment.NewLine + currentexp
-    + Environment.NewLine + slonDifficulty + Environment.NewLine
-   + pinkDifficulty+  Environment.NewLine + greenDifficulty + Environment.NewLine + questId + Environment.NewLine + currentCounter
-   + Environment.NewLine + slonCounter + Environment.NewLine + pinkCounter + Environment.NewLine + greenCounter);
 
+
+
+        File.WriteAllText("Save.txt", gold + Environment.NewLine + level + Environment.NewLine + currentexp + Environment.NewLine 
+            + slonDifficulty + Environment.NewLine + pinkDifficulty + Environment.NewLine + greenDifficulty + Environment.NewLine 
+            + questId + Environment.NewLine + currentCounter + Environment.NewLine + slonCounter + Environment.NewLine + pinkCounter + Environment.NewLine + greenCounter);
         notificationManager.Notify("Game Saved!");
     }
 
 
-
-    public void LoadQuest(int questId)
-    {
+    public void LoadQuest(int questId) {
         if (questId == 0)
             GameManager.Instance.currentQuest = GameManager.Instance.elephants;
         else if (questId == 1)
@@ -60,6 +63,7 @@ public class SaveManager : MonoBehaviour
         else if (questId == 2)
             GameManager.Instance.currentQuest = GameManager.Instance.green;
     }
+
     public void LoadGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -70,6 +74,7 @@ public class SaveManager : MonoBehaviour
         GameManager.Instance.currentExp = int.Parse(reader.ReadLine());
 
         
+
         GameManager.Instance.elephants.difficulty = int.Parse(reader.ReadLine());
         GameManager.Instance.pink.difficulty = int.Parse(reader.ReadLine());
         GameManager.Instance.green.difficulty = int.Parse(reader.ReadLine());
@@ -78,12 +83,9 @@ public class SaveManager : MonoBehaviour
         LoadQuest(questId);
 
         GameManager.Instance.currentCounter = int.Parse(reader.ReadLine());
-        GameManager.Instance.SlonCounter = int.Parse(reader.ReadLine());
-        GameManager.Instance.PinkCounter = int.Parse(reader.ReadLine());
-        GameManager.Instance.GreenCounter = int.Parse(reader.ReadLine());
-        
-
-
+        GameManager.Instance.SlonCounter = int.Parse(reader.ReadLine()); ;
+        GameManager.Instance.PinkCounter = int.Parse(reader.ReadLine()); ;
+        GameManager.Instance.GreenCounter = int.Parse(reader.ReadLine()); ;
 
     }
 }
