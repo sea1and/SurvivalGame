@@ -10,11 +10,14 @@ public class MultiplayerManager : MonoBehaviour
 	public string nick = "";
 	public GameObject bodyPrefab;
 	GameObject player;
-	double one = 0;
+	int IsHost;
+	int count = 0;
 	ArrayList temp = new ArrayList();
 
 	void Start() 
 	{
+		nick = PlayerPrefs.GetString ("MyNickname");
+		IsHost = PlayerPrefs.GetInt ("IsHost");
 		clientServer = GameObject.FindGameObjectWithTag("ClientServer").GetComponent<ClientServer>();
 		clientServer.Init (nick);
 		player = GameObject.FindGameObjectWithTag ("Player");
@@ -25,18 +28,18 @@ public class MultiplayerManager : MonoBehaviour
 		temp = clientServer.GetSessions();
 		if (clientServer.HasJoinedSession())
 		{
-			clientServer.SendPlayerData (nick, (double)player.transform.position.x, (double)player.transform.position.y, (double)player.transform.position.z, (double)player.transform.rotation.eulerAngles.y, player.GetComponent<Animator>().GetBool("IsWalking"), player.GetComponentInChildren<PlayerShooting>().isShooting);
+			if (count % 2 == 0) {
+				clientServer.SendPlayerData (nick, (double)player.transform.position.x, (double)player.transform.position.y, (double)player.transform.position.z, (double)player.transform.rotation.eulerAngles.y, player.GetComponent<Animator> ().GetBool ("IsWalking"), player.GetComponentInChildren<PlayerShooting> ().isShooting);
+			}
+			count++;
 		}
 
-		if (clientServer.GetSessions().Count > 0)
+		else if (clientServer.GetSessions().Count > 0)
 		{
 			string name = clientServer.FoundNameToNick((string)temp[0]);
-			if (!clientServer.HasJoinedSession())
-			{
-				clientServer.JoinSession((string)temp[0]);
-			}
-
+			clientServer.JoinSession((string)temp[0]);
 		}
+
 		if (clientServer.multiplayerHandler.playerDB.Count > 0) {
 			foreach (multi.MultiplayerHandler.PlayerData data in clientServer.multiplayerHandler.playerDB) {
 				if (!data.IsSpawned) {

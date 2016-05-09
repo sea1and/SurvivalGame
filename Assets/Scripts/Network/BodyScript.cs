@@ -6,10 +6,12 @@ public class BodyScript : MonoBehaviour {
 	ClientServer clientServer;
 	public string name = "";
 	Rigidbody body;
+	Vector3 screenPos;
 	void Start () {
 		clientServer = GameObject.FindGameObjectWithTag("ClientServer").GetComponent<ClientServer>();
 	}
 	void Update () {
+		screenPos = Camera.main.WorldToScreenPoint(transform.position);
 		foreach (multi.MultiplayerHandler.PlayerData data in clientServer.multiplayerHandler.playerDB) {
 			if (data.name == name) {
 				body = gameObject.GetComponent<Rigidbody> ();
@@ -24,4 +26,7 @@ public class BodyScript : MonoBehaviour {
 				gameObject.GetComponentInChildren<GunAnimation> ().isShooting = data.IsShooting;             }
 		}
 	}
+
+	void OnGUI(){
+		GUI.Label(new Rect((screenPos.x-20), Screen.height - (screenPos.y + 70), 100, 50), name );}
 }

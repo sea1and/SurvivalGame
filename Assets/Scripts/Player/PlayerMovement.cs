@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
 	Rigidbody playerRigidbody;
 	int floorMask;
 	float camRayLength = 100f;
-
 	public Texture2D cursorTexture;
 	public CursorMode cursorMode = CursorMode.Auto;
 	public Vector2 hotSpot = Vector2.zero;
@@ -27,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 	}
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.E))
+		if (Input.GetKeyDown(KeyCode.E))
         {
             if (invShown)
             {

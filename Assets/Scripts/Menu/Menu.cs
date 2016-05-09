@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -8,6 +9,25 @@ public class Menu : MonoBehaviour {
     {
 		SceneManager.LoadScene ("MainScene");
     }
+
+	public void NewMultiplayerGame()
+	{
+		Text field = GameObject.FindGameObjectWithTag ("NicknameField").GetComponent<Text> ();
+		if (field != null) {
+			PlayerPrefs.SetString ("MyNickname", field.text);
+			PlayerPrefs.SetInt ("IsHost", 1);
+			SceneManager.LoadScene ("Multiplayer");
+		}
+	}
+	public void JoinMultiplayerGame()
+	{
+		Text field = GameObject.FindGameObjectWithTag ("NicknameField").GetComponent<Text> ();
+		if (field != null) {
+			PlayerPrefs.SetString ("MyNickname", field.text);
+			PlayerPrefs.SetInt ("IsHost", 0);
+			SceneManager.LoadScene ("Multiplayer");
+		}
+	}
     /*public void Button
     {
 

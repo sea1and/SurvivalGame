@@ -17,6 +17,7 @@ TagManager:
   - ClientServer
   - Body
   - MultiplayerManager
+  - NicknameField
   layers:
   - Default
   - TransparentFX
