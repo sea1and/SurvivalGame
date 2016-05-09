@@ -30,6 +30,9 @@ public class MultiplayerManager : MonoBehaviour
 		{
 			if (count % 2 == 0) {
 				clientServer.SendPlayerData (nick, (double)player.transform.position.x, (double)player.transform.position.y, (double)player.transform.position.z, (double)player.transform.rotation.eulerAngles.y, player.GetComponent<Animator> ().GetBool ("IsWalking"), player.GetComponentInChildren<PlayerShooting> ().isShooting);
+				clientServer.SendEnemyInitData ("bla", 10, 10, 10, 10);
+				clientServer.SendEnemyAgroData ("bla", "bla");
+				clientServer.SendEnemyHPData ("bla",10);
 			}
 			count++;
 		}

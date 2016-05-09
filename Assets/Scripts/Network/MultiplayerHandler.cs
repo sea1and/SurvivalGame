@@ -76,10 +76,26 @@ namespace multi
 
 		public void SendPlayerData(string name, double enemyPosX, double enemyPosY, double enemyPosZ, double turning, bool shooting, bool walking)
 		{
-
 			testObj.SendPlayerData(name, enemyPosX, enemyPosY, enemyPosZ, turning, shooting, walking);
-
 		}
+
+		public void SendEnemyInitData(string name, double enemyPosX, double enemyPosY, double enemyPosZ, double turning)
+		{
+			testObj.SendEnemyInitData(name, enemyPosX, enemyPosY, enemyPosZ, turning);
+		}
+
+		public void SendEnemyAgroData(string myName, string playerName)
+		{
+			testObj.SendEnemyAgroData(myName, playerName);
+		}
+
+		public void SendEnemyHPData(string myname, double health)
+		{
+			testObj.SendEnemyHPData(myname, health);
+		}
+
+
+
 
 		public bool IsDuringGame()
 		{
@@ -162,15 +178,29 @@ namespace multi
 			}
 		}
 
-		public void EnemySignalHandler(AllJoyn.InterfaceDescription.Member member, string srcPath, AllJoyn.Message message)
+		public void EnemyInitSignalHandler(AllJoyn.InterfaceDescription.Member member, string srcPath, AllJoyn.Message message)
 		{
-			Debug.LogError("Enemy");
+			Debug.LogError("EnemyInit");
 		}
+
+		public void EnemyAgroSignalHandler(AllJoyn.InterfaceDescription.Member member, string srcPath, AllJoyn.Message message)
+		{
+			Debug.LogError("EnemyAgro");
+		}
+
+		public void EnemyHPSignalHandler(AllJoyn.InterfaceDescription.Member member, string srcPath, AllJoyn.Message message)
+		{
+			Debug.LogError("EnemyHP");
+		}
+
+
 
 		class TestBusObject : AllJoyn.BusObject
 		{
 			private AllJoyn.InterfaceDescription.Member playerMember;
-			private AllJoyn.InterfaceDescription.Member enemyMember;
+			private AllJoyn.InterfaceDescription.Member enemyInitMember;
+			private AllJoyn.InterfaceDescription.Member enemyAgroMember;
+			private AllJoyn.InterfaceDescription.Member enemyHPMember;
 
 			public TestBusObject(AllJoyn.BusAttachment bus, string path) : base(path, false)
 			{
@@ -182,7 +212,9 @@ namespace multi
 				}
 
 				playerMember = exampleIntf.GetMember("player");
-				enemyMember = exampleIntf.GetMember("enemy");
+				enemyInitMember = exampleIntf.GetMember("enemyInit");
+				enemyAgroMember = exampleIntf.GetMember("enemyAgro");
+				enemyHPMember = exampleIntf.GetMember("enemyHP");
 			}
 
 			protected override void OnObjectRegistered ()
@@ -208,6 +240,52 @@ namespace multi
 					Debug.LogError("failed to send vector(data) signal: " + status.ToString());
 				}
 			}
+
+			public void SendEnemyInitData(string name, double enemyPosX, double enemyPosY, double enemyPosZ, double turning)
+			{
+				AllJoyn.MsgArgs payload = new AllJoyn.MsgArgs((uint)5);
+				payload[0].Set((string)name);
+				payload[1].Set((double)enemyPosX);
+				payload[2].Set((double)enemyPosY);
+				payload[3].Set((double)enemyPosZ);
+				payload[4].Set((double)turning);
+
+				byte flags = AllJoyn.ALLJOYN_FLAG_GLOBAL_BROADCAST;
+				AllJoyn.QStatus status = Signal(null, 0, enemyInitMember, payload, 0, flags);
+				if (!status)
+				{
+					Debug.LogError("failed to send vector(data) signal: " + status.ToString());
+				}
+			}
+
+			public void SendEnemyAgroData(string myName, string playerName)
+			{
+				AllJoyn.MsgArgs payload = new AllJoyn.MsgArgs((uint)2);
+				payload[0].Set((string)myName);
+				payload[1].Set((string)playerName);
+
+				byte flags = AllJoyn.ALLJOYN_FLAG_GLOBAL_BROADCAST;
+				AllJoyn.QStatus status = Signal(null, 0, enemyAgroMember, payload, 0, flags);
+				if (!status)
+				{
+					Debug.LogError("failed to send vector(data) signal: " + status.ToString());
+				}
+			}
+
+			public void SendEnemyHPData(string Myname, double health)
+			{
+				AllJoyn.MsgArgs payload = new AllJoyn.MsgArgs((uint)2);
+				payload[0].Set((string)Myname);
+				payload[1].Set((double)health);
+
+				byte flags = AllJoyn.ALLJOYN_FLAG_GLOBAL_BROADCAST;
+				AllJoyn.QStatus status = Signal(null, 0, enemyHPMember, payload, 0, flags);
+				if (!status)
+				{
+					Debug.LogError("failed to send vector(data) signal: " + status.ToString());
+				}
+			}
+
 		}
 
 		class MyBusListener : AllJoyn.BusListener
@@ -321,7 +399,9 @@ namespace multi
 				{
 					Debug.LogError("Interface Created.");
 					testIntf.AddSignal ("player", "sddddbb", "playerPoints", 0);
-					testIntf.AddSignal("enemy", "sddddb", "enemyPoints", 0);
+					testIntf.AddSignal("enemyInit", "sdddd", "enemyPoints", 0);
+					testIntf.AddSignal ("enemyAgro", "ss", "enemyPoints1", 0);
+					testIntf.AddSignal ("enemyHP", "sd", "enemyPoints2", 0);
 					testIntf.Activate();
 				}
 				else
@@ -391,8 +471,30 @@ namespace multi
 					Debug.LogError("add vector signal handler " + status);
 				}
 
-				AllJoyn.InterfaceDescription.Member enemyMember = testIntf.GetMember("enemy");
-				status = msgBus.RegisterSignalHandler(this.EnemySignalHandler, enemyMember, null);
+				AllJoyn.InterfaceDescription.Member enemyInitMember = testIntf.GetMember("enemyInit");
+				status = msgBus.RegisterSignalHandler(this.EnemyInitSignalHandler, enemyInitMember, null);
+				if (!status)
+				{
+					Debug.LogError("Failed to add vector signal handler " + status);
+				}
+				else
+				{
+					Debug.LogError("add vector signal handler " + status);
+				}
+
+				AllJoyn.InterfaceDescription.Member enemyAgroMember = testIntf.GetMember("enemyAgro");
+				status = msgBus.RegisterSignalHandler(this.EnemyAgroSignalHandler, enemyAgroMember, null);
+				if (!status)
+				{
+					Debug.LogError("Failed to add vector signal handler " + status);
+				}
+				else
+				{
+					Debug.LogError("add vector signal handler " + status);
+				}
+
+				AllJoyn.InterfaceDescription.Member enemyHPMember = testIntf.GetMember("enemyHP");
+				status = msgBus.RegisterSignalHandler(this.EnemyHPSignalHandler, enemyHPMember, null);
 				if (!status)
 				{
 					Debug.LogError("Failed to add vector signal handler " + status);

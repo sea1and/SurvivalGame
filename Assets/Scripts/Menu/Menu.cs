@@ -5,7 +5,12 @@ using System.Collections;
 
 public class Menu : MonoBehaviour {
 
-    public void NewGame()
+	void Start() {
+		PlayerPrefs.SetString ("MyNickname", "");
+		PlayerPrefs.SetInt ("IsHost", 1);
+	}
+
+	public void NewGame()
     {
 		SceneManager.LoadScene ("MainScene");
     }
@@ -15,7 +20,6 @@ public class Menu : MonoBehaviour {
 		Text field = GameObject.FindGameObjectWithTag ("NicknameField").GetComponent<Text> ();
 		if (field != null) {
 			PlayerPrefs.SetString ("MyNickname", field.text);
-			PlayerPrefs.SetInt ("IsHost", 1);
 			SceneManager.LoadScene ("Multiplayer");
 		}
 	}
