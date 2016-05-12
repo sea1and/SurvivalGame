@@ -20,7 +20,8 @@ class RemoveSlotScript : MonoBehaviour, IDropHandler /* , IPointerEnterHandler, 
         {
             Vector3 PlayerPosition = GameObject.FindWithTag("Player").transform.position;
 
-            GameObject tmp = (GameObject)Instantiate(Loot, PlayerPosition + new Vector3(SmartRand(), 0.7f, SmartRand()), Quaternion.identity);
+            float randNum = UnityEngine.Random.Range(0, 2 * Mathf.PI);
+            GameObject tmp = (GameObject)Instantiate(Loot, PlayerPosition + new Vector3(2 * Mathf.Cos(randNum), 0.7f, 2 * Mathf.Sin(randNum)), Quaternion.identity); 
             tmp.GetComponent<LootType>().LootID = inventory.draggedItem.itemID;
             tmp.GetComponent<LootType>().Value = inventory.draggedItem.itemValue;
             inventory.closeDraggedItem();
@@ -28,14 +29,6 @@ class RemoveSlotScript : MonoBehaviour, IDropHandler /* , IPointerEnterHandler, 
 
     }
 
-    float SmartRand()
-    {
-        float rand = UnityEngine.Random.Range(-1.5f, 1.5f);
-        while (Mathf.Abs(rand) < 0.3f)
-        {
-            rand = UnityEngine.Random.Range(-1.5f, 1.5f);
-        }
-        return rand;
-    }
+    
 }
 
