@@ -19,12 +19,16 @@ public class PickUpManager : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag ("Player");
 		inv = canv.GetComponent<Inventory>();
 	}
-    public void PickUp(GameObject item) {
+    public void PickUp(GameObject item)
+    {
         Destroy(item);
-        inv.addItem(item.GetComponent<LootType>().LootID);
+        for (int i = 0; i < item.GetComponent<LootType>().Value; i++) // при подборе добавляет количество единиц предмета,который был выброшен
+        {
+            inv.addItem(item.GetComponent<LootType>().LootID);
+        }
         PickUpSound.Play();
     }
-	void Update() {
+    void Update() {
 		
 	}
 

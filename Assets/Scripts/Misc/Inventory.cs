@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour {
 
 	public List<GameObject> Slots = new List<GameObject> ();
-    public GameObject RemoveSlot;
+    [HideInInspector]public GameObject RemoveSlot;
     public GameObject removeSlotPrefab;
 	public List<Item> Items = new List<Item>();
 	public GameObject slots;
@@ -28,7 +28,6 @@ public class Inventory : MonoBehaviour {
 			Vector3 posi = (Input.mousePosition - GameObject.FindGameObjectWithTag ("Canvas").GetComponent<RectTransform> ().localPosition);
 			draggedItemGameObject.GetComponent<RectTransform> ().localPosition = new Vector3 (posi.x + 15, posi.y - 15, posi.z);
 		}
-        RemoveSlot.GetComponent<RectTransform>().localPosition = new Vector3(heightCoord, weightCoord, 0);
     }
 
 	void Start () {

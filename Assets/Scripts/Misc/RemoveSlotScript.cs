@@ -22,6 +22,7 @@ class RemoveSlotScript : MonoBehaviour, IDropHandler /* , IPointerEnterHandler, 
 
             GameObject tmp = (GameObject)Instantiate(Loot, PlayerPosition + new Vector3(SmartRand(), 0.7f, SmartRand()), Quaternion.identity);
             tmp.GetComponent<LootType>().LootID = inventory.draggedItem.itemID;
+            tmp.GetComponent<LootType>().Value = inventory.draggedItem.itemValue;
             inventory.closeDraggedItem();
         }
 
