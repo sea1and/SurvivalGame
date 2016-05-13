@@ -118,11 +118,11 @@ public class Inventory : MonoBehaviour {
 	}
 
 	public void ShowTooltip(Vector3 toolPosition, Item item) {
-		tooltip.GetComponent<RectTransform> ().localPosition = new Vector3 (toolPosition.x + 230, toolPosition.y, toolPosition.z);
+		tooltip.GetComponent<RectTransform> ().localPosition = new Vector3 (toolPosition.x+20, toolPosition.y, toolPosition.z);
 		tooltip.SetActive (true);
 
 		tooltip.transform.GetChild (0).GetComponent<Text>().text = item.itemName;
-		tooltip.transform.GetChild (1).GetComponent<Text>().text = "+" + item.itemPower + " to Power";
+		//tooltip.transform.GetChild (1).GetComponent<Text>().text = "+" + item.itemPower + " to Power";
 		tooltip.transform.GetChild (2).GetComponent<Text>().text = item.itemDesc;
 	}
 
