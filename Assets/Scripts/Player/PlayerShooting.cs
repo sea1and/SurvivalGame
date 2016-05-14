@@ -81,6 +81,22 @@ public class PlayerShooting : MonoBehaviour
                 enemyHealth.TakeDamage (damagePerShot + damageBonus, shootHit.point);
             }
             gunLine.SetPosition (1, shootHit.point);
+
+			EnemyJoinHealth enemyJoinHealth = shootHit.collider.GetComponent <EnemyJoinHealth> ();
+			if(enemyJoinHealth != null)
+			{
+				enemyJoinHealth.TakeDamage (damagePerShot + damageBonus, shootHit.point);
+				gunLine.SetPosition (1, shootHit.point);
+			}
+
+
+			EnemyHostHealth enemyHostHealth = shootHit.collider.GetComponent <EnemyHostHealth> ();
+			if(enemyHostHealth != null)
+			{
+				enemyHostHealth.TakeDamage (damagePerShot + damageBonus, shootHit.point);
+				gunLine.SetPosition (1, shootHit.point);
+			}
+
         }
         else
         {

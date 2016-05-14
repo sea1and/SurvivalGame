@@ -26,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
 	}
 
     void Update() {
+		Vector3 temp = transform.position; 
+		temp.y = 0f; 
+		transform.position = temp; 
 		if (Input.GetKeyDown(KeyCode.E))
         {
             if (invShown)

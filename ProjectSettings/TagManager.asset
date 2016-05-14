@@ -18,6 +18,7 @@ TagManager:
   - Body
   - MultiplayerManager
   - NicknameField
+  - EnemyJoinManager
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,10 @@ public class BodyScript : MonoBehaviour {
 		clientServer = GameObject.FindGameObjectWithTag("ClientServer").GetComponent<ClientServer>();
 	}
 	void Update () {
+		Vector3 temp = transform.position; 
+		temp.y = 0f; 
+		transform.position = temp; 
+
 		screenPos = Camera.main.WorldToScreenPoint(transform.position);
 		foreach (multi.MultiplayerHandler.PlayerData data in clientServer.multiplayerHandler.playerDB) {
 			if (data.name == name) {

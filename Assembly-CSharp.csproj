@@ -72,6 +72,14 @@
      <Compile Include="Assets\Scripts\Network\AllJoynAgent.cs" />
      <Compile Include="Assets\Scripts\Network\BodyScript.cs" />
      <Compile Include="Assets\Scripts\Network\ClientServer.cs" />
+     <Compile Include="Assets\Scripts\Network\EnemyHostAttack.cs" />
+     <Compile Include="Assets\Scripts\Network\EnemyHostHealth.cs" />
+     <Compile Include="Assets\Scripts\Network\EnemyHostManager.cs" />
+     <Compile Include="Assets\Scripts\Network\EnemyHostMovement.cs" />
+     <Compile Include="Assets\Scripts\Network\EnemyJoinAttack.cs" />
+     <Compile Include="Assets\Scripts\Network\EnemyJoinHealth.cs" />
+     <Compile Include="Assets\Scripts\Network\EnemyJoinManager.cs" />
+     <Compile Include="Assets\Scripts\Network\EnemyJoinMovement.cs" />
      <Compile Include="Assets\Scripts\Network\GunAnimation.cs" />
      <Compile Include="Assets\Scripts\Network\MultiplayerHandler.cs" />
      <Compile Include="Assets\Scripts\Network\MultiplayerManager.cs" />

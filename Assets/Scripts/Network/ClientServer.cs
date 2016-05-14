@@ -51,19 +51,19 @@ namespace multi
 
 		}
 
-		public void SendEnemyInitData(string name, double enemyPosX, double enemyPosY, double enemyPosZ, double turning)
+		public void SendEnemyInitData(string sender, string name, double enemyPosX, double enemyPosY, double enemyPosZ, double turning)
 		{
-			multiplayerHandler.SendEnemyInitData(name, enemyPosX, enemyPosY, enemyPosZ, turning);
+			multiplayerHandler.SendEnemyInitData(sender, name, enemyPosX, enemyPosY, enemyPosZ, turning);
 		}
 
-		public void SendEnemyAgroData(string myName, string playerName)
+		public void SendEnemyAgroData(string sender, string myName, string playerName)
 		{
-			multiplayerHandler.SendEnemyAgroData(myName, playerName);
+			multiplayerHandler.SendEnemyAgroData(sender, myName, playerName);
 		}
 
-		public void SendEnemyHPData(string myname, double health)
+		public void SendEnemyHPData(string sender, string myname, double health)
 		{
-			multiplayerHandler.SendEnemyHPData(myname, health);
+			multiplayerHandler.SendEnemyHPData(sender, myname, health);
 		}
 
 

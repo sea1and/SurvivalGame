@@ -11,10 +11,8 @@ public class EnemyManager : MonoBehaviour
 
     void Start ()
     {
-		if (PlayerPrefs.GetInt ("IsHost") == 1) {
 			InvokeRepeating ("Spawn", spawnTime, spawnTime);
 			StartCoroutine (Spawn ());
-		}
     }
 
 

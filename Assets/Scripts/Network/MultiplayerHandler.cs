@@ -40,6 +40,7 @@ namespace multi
 		private string connectedPlayerNick = "";
 
 		private bool isDuringGame = false;
+		public bool IHaveGotTheWorld = false;
 
 		public class PlayerData {
 			public string name;
@@ -52,7 +53,19 @@ namespace multi
 			public bool IsSpawned;
 		}
 
+		public class EnemyData
+		{
+			public string name;
+			public string target;
+			public double posX;
+			public double posY;
+			public double posZ;
+			public double angleY;
+			public bool IsSpawned;
+		}
+
 		public List<PlayerData> playerDB = new List<PlayerData> ();
+		public List<EnemyData> enemyDB = new List<EnemyData> ();
 
 		private static Mutex mutex = new Mutex();
 
@@ -79,19 +92,19 @@ namespace multi
 			testObj.SendPlayerData(name, enemyPosX, enemyPosY, enemyPosZ, turning, shooting, walking);
 		}
 
-		public void SendEnemyInitData(string name, double enemyPosX, double enemyPosY, double enemyPosZ, double turning)
+		public void SendEnemyInitData(string sender, string name, double enemyPosX, double enemyPosY, double enemyPosZ, double turning)
 		{
-			testObj.SendEnemyInitData(name, enemyPosX, enemyPosY, enemyPosZ, turning);
+			testObj.SendEnemyInitData(sender, name, enemyPosX, enemyPosY, enemyPosZ, turning);
 		}
 
-		public void SendEnemyAgroData(string myName, string playerName)
+		public void SendEnemyAgroData(string sender, string myName, string playerName)
 		{
-			testObj.SendEnemyAgroData(myName, playerName);
+			testObj.SendEnemyAgroData(sender, myName, playerName);
 		}
 
-		public void SendEnemyHPData(string myname, double health)
+		public void SendEnemyHPData(string sender, string myname, double health)
 		{
-			testObj.SendEnemyHPData(myname, health);
+			testObj.SendEnemyHPData(sender, myname, health);
 		}
 
 
@@ -180,17 +193,52 @@ namespace multi
 
 		public void EnemyInitSignalHandler(AllJoyn.InterfaceDescription.Member member, string srcPath, AllJoyn.Message message)
 		{
-			Debug.LogError("EnemyInit");
+			if (playerNick != (string)message [0]) {
+				int index = enemyDB.FindIndex(
+					delegate(EnemyData data)
+					{
+						return data.name == (string)message[1];
+					});
+				if (index == -1) {
+					EnemyData temporaryData = new EnemyData ();
+					temporaryData.name = (string)message [1];
+					temporaryData.posX = (double)message [2];
+					temporaryData.posY = (double)message [3];
+					temporaryData.posZ = (double)message [4];
+					temporaryData.angleY = (double)message [5];
+					temporaryData.IsSpawned = false;
+					enemyDB.Add (temporaryData);
+				} else {
+					enemyDB[index].posX = (double)message [2];
+					playerDB[index].posY = (double)message [3];
+					playerDB[index].posZ = (double)message [4];
+					playerDB[index].angleY = (double)message [5];
+				}
+			}
 		}
 
 		public void EnemyAgroSignalHandler(AllJoyn.InterfaceDescription.Member member, string srcPath, AllJoyn.Message message)
 		{
-			Debug.LogError("EnemyAgro");
+			if (playerNick != (string)message [0]) {
+				int index = enemyDB.FindIndex(
+					delegate(EnemyData data)
+					{
+						return data.name == (string)message[1];
+					});
+				enemyDB[index].target = (string)message [2];
+			}
 		}
 
 		public void EnemyHPSignalHandler(AllJoyn.InterfaceDescription.Member member, string srcPath, AllJoyn.Message message)
 		{
-			Debug.LogError("EnemyHP");
+			if (playerNick != (string)message [0]) {
+				int index = enemyDB.FindIndex(
+					delegate(EnemyData data)
+					{
+						return data.name == (string)message[1];
+					});
+				enemyDB.RemoveAt (index);
+			}
 		}
 
 
@@ -208,7 +256,7 @@ namespace multi
 				AllJoyn.QStatus status = AddInterface(exampleIntf);
 				if(!status)
 				{
-					Debug.LogError("Failed to add interface " + status.ToString());
+					//Debug.LogError("Failed to add interface " + status.ToString());
 				}
 
 				playerMember = exampleIntf.GetMember("player");
@@ -219,7 +267,7 @@ namespace multi
 
 			protected override void OnObjectRegistered ()
 			{
-				Debug.LogError("ObjectRegistered has been called");
+				//Debug.LogError("ObjectRegistered has been called");
 			}
 
 			public void SendPlayerData(string name, double enemyPosX, double enemyPosY, double enemyPosZ, double turning, bool shooting, bool walking)
@@ -237,32 +285,36 @@ namespace multi
 				AllJoyn.QStatus status = Signal(null, 0, playerMember, payload, 0, flags);
 				if (!status)
 				{
-					Debug.LogError("failed to send vector(data) signal: " + status.ToString());
+					//Debug.LogError("failed to send vector(data) signal: " + status.ToString());
 				}
 			}
 
-			public void SendEnemyInitData(string name, double enemyPosX, double enemyPosY, double enemyPosZ, double turning)
+			public void SendEnemyInitData(string sender, string name, double enemyPosX, double enemyPosY, double enemyPosZ, double turning)
 			{
-				AllJoyn.MsgArgs payload = new AllJoyn.MsgArgs((uint)5);
-				payload[0].Set((string)name);
-				payload[1].Set((double)enemyPosX);
-				payload[2].Set((double)enemyPosY);
-				payload[3].Set((double)enemyPosZ);
-				payload[4].Set((double)turning);
+				//Debug.LogError ("SendEnemyInitData");
+				AllJoyn.MsgArgs payload = new AllJoyn.MsgArgs((uint)6);
+				payload[0].Set((string)sender);
+				payload[1].Set((string)name);
+				payload[2].Set((double)enemyPosX);
+				payload[3].Set((double)enemyPosY);
+				payload[4].Set((double)enemyPosZ);
+				payload[5].Set((double)turning);
 
 				byte flags = AllJoyn.ALLJOYN_FLAG_GLOBAL_BROADCAST;
 				AllJoyn.QStatus status = Signal(null, 0, enemyInitMember, payload, 0, flags);
 				if (!status)
 				{
-					Debug.LogError("failed to send vector(data) signal: " + status.ToString());
+					//Debug.LogError("failed to send vector(data) signal: " + status.ToString());
 				}
 			}
 
-			public void SendEnemyAgroData(string myName, string playerName)
+			public void SendEnemyAgroData(string sender, string myName, string playerName)
 			{
-				AllJoyn.MsgArgs payload = new AllJoyn.MsgArgs((uint)2);
-				payload[0].Set((string)myName);
-				payload[1].Set((string)playerName);
+				//Debug.LogError ("SendEnemyAgroData");
+				AllJoyn.MsgArgs payload = new AllJoyn.MsgArgs((uint)3);
+				payload[0].Set((string)sender);
+				payload[1].Set((string)myName);
+				payload[2].Set((string)playerName);
 
 				byte flags = AllJoyn.ALLJOYN_FLAG_GLOBAL_BROADCAST;
 				AllJoyn.QStatus status = Signal(null, 0, enemyAgroMember, payload, 0, flags);
@@ -272,11 +324,12 @@ namespace multi
 				}
 			}
 
-			public void SendEnemyHPData(string Myname, double health)
+			public void SendEnemyHPData(string sender, string Myname, double health)
 			{
-				AllJoyn.MsgArgs payload = new AllJoyn.MsgArgs((uint)2);
-				payload[0].Set((string)Myname);
-				payload[1].Set((double)health);
+				AllJoyn.MsgArgs payload = new AllJoyn.MsgArgs((uint)3);
+				payload[0].Set((string)sender);
+				payload[1].Set((string)Myname);
+				payload[2].Set((double)health);
 
 				byte flags = AllJoyn.ALLJOYN_FLAG_GLOBAL_BROADCAST;
 				AllJoyn.QStatus status = Signal(null, 0, enemyHPMember, payload, 0, flags);
@@ -292,32 +345,32 @@ namespace multi
 		{
 			protected override void FoundAdvertisedName(string name, AllJoyn.TransportMask transport, string namePrefix)
 			{
-				Debug.LogError("FoundAdvertisedName(name=" + name + ", prefix=" + namePrefix + ")");
+				//Debug.LogError("FoundAdvertisedName(name=" + name + ", prefix=" + namePrefix + ")");
 				if (string.Compare(myAdvertisedName, name) == 0)
 				{
-					Debug.LogError("Ignoring my advertisement");
+					//Debug.LogError("Ignoring my advertisement");
 				}
 				else if (string.Compare(SERVICE_NAME, namePrefix) == 0)
 				{
-					Debug.LogError("Bla");
+					//Debug.LogError("Bla");
 					sFoundName.Add(name);
 				}
 			}
 
 			protected override void ListenerRegistered(AllJoyn.BusAttachment busAttachment)
 			{
-				Debug.LogError("ListenerRegistered: busAttachment=" + busAttachment);
+				//Debug.LogError("ListenerRegistered: busAttachment=" + busAttachment);
 			}
 
 			protected override void NameOwnerChanged(string busName, string previousOwner, string newOwner)
 			{
-				Debug.LogError("NameOwnerChanged: name=" + busName + ", oldOwner=" +
-					previousOwner + ", newOwner=" + newOwner);
+				//Debug.LogError("NameOwnerChanged: name=" + busName + ", oldOwner=" +
+					//previousOwner + ", newOwner=" + newOwner);
 			}
 
 			protected override void LostAdvertisedName(string name, AllJoyn.TransportMask transport, string namePrefix)
 			{
-				Debug.LogError("LostAdvertisedName(name=" + name + ", prefix=" + namePrefix + ")");
+				//Debug.LogError("LostAdvertisedName(name=" + name + ", prefix=" + namePrefix + ")");
 				sFoundName.Remove(name);
 			}
 		}
@@ -336,18 +389,18 @@ namespace multi
 
 				if (sessionPort != SERVICE_PORT)
 				{
-					Debug.LogError("Rejecting join attempt on unexpected session port " + sessionPort);
+					//Debug.LogError("Rejecting join attempt on unexpected session port " + sessionPort);
 					return false;
 				}
-				Debug.LogError("Accepting join session request from " + joiner + 
-					" (opts.proximity=" + opts.Proximity + ", opts.traffic=" + opts.Traffic + 
-					", opts.transports=" + opts.Transports + ")");
+				//Debug.LogError("Accepting join session request from " + joiner + 
+					//" (opts.proximity=" + opts.Proximity + ", opts.traffic=" + opts.Traffic + 
+					//", opts.transports=" + opts.Transports + ")");
 				return true;
 			}
 
 			protected override void SessionJoined(ushort sessionPort, uint sessionId, string joiner)
 			{
-				Debug.LogError("Session Joined!!!!!!");
+				//Debug.LogError("Session Joined!!!!!!");
 				currentSessionId = sessionId;
 				currentJoinedSession = myAdvertisedName;
 				multiplayerHandler.SetConnectedPlayerNick(joiner);
@@ -371,49 +424,49 @@ namespace multi
 			{
 				multiplayerHandler.SetConnectedPlayerNick("");
 				multiplayerHandler.GameEnded();
-				Debug.LogError("SessionLost (" + sessionId + ")");
+				//Debug.LogError("SessionLost (" + sessionId + ")");
 			}
 
 			protected override void SessionMemberAdded(uint sessionId, string uniqueName)
 			{
-				Debug.LogError("SessionMemberAdded (" + sessionId + "," + uniqueName + ")");
+				//Debug.LogError("SessionMemberAdded (" + sessionId + "," + uniqueName + ")");
 			}
 
 			protected override void SessionMemberRemoved(uint sessionId, string uniqueName)
 			{
-				Debug.LogError("SessionMemberRemoved (" + sessionId + "," + uniqueName + ")");
+				//Debug.LogError("SessionMemberRemoved (" + sessionId + "," + uniqueName + ")");
 			}
 		}
 
 		public void StartUp()
 		{
-			Debug.LogError("Starting AllJoyn");
+			//Debug.LogError("Starting AllJoyn");
 			AllJoynStarted = true;
 			AllJoyn.QStatus status = AllJoyn.QStatus.OK;
 			{
-				Debug.LogError("Creating BusAttachment");
+				//Debug.LogError("Creating BusAttachment");
 				msgBus = new AllJoyn.BusAttachment("myApp", true);
 
 				status = msgBus.CreateInterface(INTERFACE_NAME, false, out testIntf);
 				if (status)
 				{
-					Debug.LogError("Interface Created.");
+					//Debug.LogError("Interface Created.");
 					testIntf.AddSignal ("player", "sddddbb", "playerPoints", 0);
-					testIntf.AddSignal("enemyInit", "sdddd", "enemyPoints", 0);
-					testIntf.AddSignal ("enemyAgro", "ss", "enemyPoints1", 0);
-					testIntf.AddSignal ("enemyHP", "sd", "enemyPoints2", 0);
+					testIntf.AddSignal("enemyInit", "ssdddd", "enemyPoints", 0);
+					testIntf.AddSignal ("enemyAgro", "sss", "enemyPoints1", 0);
+					testIntf.AddSignal ("enemyHP", "ssd", "enemyPoints2", 0);
 					testIntf.Activate();
 				}
 				else
 				{
-					Debug.LogError("Failed to create interface 'org.alljoyn.Bus.chat'");
+					//Debug.LogError("Failed to create interface 'org.alljoyn.Bus.chat'");
 				}
 
 				busListener = new MyBusListener();
 				if (status)
 				{
 					msgBus.RegisterBusListener(busListener);
-					Debug.LogError("BusListener Registered.");
+					//Debug.LogError("BusListener Registered.");
 				}
 
 
@@ -425,32 +478,32 @@ namespace multi
 					status = msgBus.Start();
 					if (status)
 					{
-						Debug.LogError("BusAttachment started.");
+						//Debug.LogError("BusAttachment started.");
 
 						msgBus.RegisterBusObject(testObj);
 						for (int i = 0; i < connectArgs.Length; ++i)
 						{
-							Debug.LogError("Connect trying: " + connectArgs[i]);
+							//Debug.LogError("Connect trying: " + connectArgs[i]);
 							status = msgBus.Connect(connectArgs[i]);
 							if (status)
 							{
-								Debug.LogError("BusAttchement.Connect(" + connectArgs[i] + ") SUCCEDED.");
+								//Debug.LogError("BusAttchement.Connect(" + connectArgs[i] + ") SUCCEDED.");
 								connectedVal = connectArgs[i];
 								break;
 							}
 							else
 							{
-								Debug.LogError("BusAttachment.Connect(" + connectArgs[i] + ") failed.");
+								//Debug.LogError("BusAttachment.Connect(" + connectArgs[i] + ") failed.");
 							}
 						}
 						if (!status)
 						{
-							Debug.LogError("BusAttachment.Connect failed.");
+							//Debug.LogError("BusAttachment.Connect failed.");
 						}
 					}
 					else
 					{
-						Debug.LogError("BusAttachment.Start failed.");
+						//Debug.LogError("BusAttachment.Start failed.");
 					}
 				}
 
@@ -464,11 +517,11 @@ namespace multi
 				status = msgBus.RegisterSignalHandler(this.PlayerSignalHandler, playerMember, null);
 				if (!status)
 				{
-					Debug.LogError("Failed to add vector signal handler " + status);
+					//Debug.LogError("Failed to add vector signal handler " + status);
 				}
 				else
 				{
-					Debug.LogError("add vector signal handler " + status);
+					//Debug.LogError("add vector signal handler " + status);
 				}
 
 				AllJoyn.InterfaceDescription.Member enemyInitMember = testIntf.GetMember("enemyInit");
@@ -479,7 +532,7 @@ namespace multi
 				}
 				else
 				{
-					Debug.LogError("add vector signal handler " + status);
+					//Debug.LogError("add vector signal handler " + status);
 				}
 
 				AllJoyn.InterfaceDescription.Member enemyAgroMember = testIntf.GetMember("enemyAgro");
@@ -490,7 +543,7 @@ namespace multi
 				}
 				else
 				{
-					Debug.LogError("add vector signal handler " + status);
+					//Debug.LogError("add vector signal handler " + status);
 				}
 
 				AllJoyn.InterfaceDescription.Member enemyHPMember = testIntf.GetMember("enemyHP");
@@ -501,7 +554,7 @@ namespace multi
 				}
 				else
 				{
-					Debug.LogError("add vector signal handler " + status);
+					//Debug.LogError("add vector signal handler " + status);
 				}
 
 
@@ -512,7 +565,7 @@ namespace multi
 				}
 				else
 				{
-					Debug.LogError("add vector Match " + status.ToString());
+					//Debug.LogError("add vector Match " + status.ToString());
 				}
 			}
 
@@ -537,7 +590,7 @@ namespace multi
 				{
 					Debug.LogError("BindSessionPort failed (" + status + ")");
 				}
-				Debug.LogError("BBindSessionPort on port (" + sessionPort + ")"); ;
+				//Debug.LogError("BBindSessionPort on port (" + sessionPort + ")"); ;
 			}
 
 			if (status)
@@ -567,16 +620,16 @@ namespace multi
 				}
 			}
 			sessionListener = new MySessionListener(this);
-			Debug.LogError("About to call JoinSession (Session=" + session + ")");
+			//Debug.LogError("About to call JoinSession (Session=" + session + ")");
 			status = msgBus.JoinSession(session, SERVICE_PORT, sessionListener, out currentSessionId, opts);
 			if(status)
 			{
-				Debug.LogError("Client JoinSession SUCCESS (Session id=" + currentSessionId + ")");
+				//Debug.LogError("Client JoinSession SUCCESS (Session id=" + currentSessionId + ")");
 				currentJoinedSession = session;
 			}
 			else
 			{
-				Debug.LogError("RHR JoinSession failed (status=" + status.ToString() + ")");
+				//Debug.LogError("RHR JoinSession failed (status=" + status.ToString() + ")");
 			}
 
 			return status ? true : false;
